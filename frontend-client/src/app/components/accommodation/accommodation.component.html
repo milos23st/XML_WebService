@@ -1,3 +1,111 @@
-<p>
-  accommodation works!
-</p>
+
+<div class="col-75">
+<div class="container color-dark">
+  <div class="col">
+    <h2>Search</h2>
+  </div>
+
+  <div class="col">
+		<h2> Results</h2>
+	</div>
+
+</div>
+<div class="container color-light">
+  <div class="col">
+    <p class="sm">Use this form below to search through accommodations</p>
+
+    <form (ngSubmit)="searchForm.form.valid && onSubmit()" #searchForm="ngForm" >
+
+      <div class="form-group" [ngClass]="{ 'has-error': searchForm.submitted && !city.valid }">
+          <label for="city">Destination: </label>
+          <input type="text" id="city" class="form-control" placeholder="Enter destination..." name="city" [(ngModel)]="model.city" #city="ngModel" required>
+          <div *ngIf="searchForm.submitted && !city.valid" class="alert alert-danger al">Destination required !!!</div>
+      </div>
+
+      <div class="form-group" [ngClass]="{ 'has-error': searchForm.submitted && !places.valid }">
+        <label for="people">People: </label>
+        <input type="number" class="form-control" name="peopleM" id="people" placeholder="Enter for how many people..." [(ngModel)]="model.peopleM" #places="ngModel" required>
+        <div *ngIf="searchForm.submitted && !places.valid" class="alert alert-danger al">Number required !!!</div>
+
+      </div>
+
+      <div class="row ">
+        
+      <div class="form-group col-lg-5" [ngClass]="{ 'has-error': searchForm.submitted && !dateS.valid }">
+        <label for="date1">Check in date: </label>
+        <input type="date" class="form-control" name="date1" id="date1" [(ngModel)]="model.dateS" #dateS="ngModel"  required>
+        <div *ngIf="searchForm.submitted && !dateS.valid" class="alert alert-danger">Start date !!!</div>
+
+      </div>
+
+      <div class="form-group col-lg-5" [ngClass]="{ 'has-error': searchForm.submitted && !dateE.valid }">
+        <label for="date2">Check out date: </label>
+        <input type="date" class="form-control" name="date2" id="date2" [(ngModel)]="model.dateE" #dateE="ngModel"  required="required">
+        <div *ngIf="searchForm.submitted && !dateE.valid" class="alert alert-danger">End date !!!</div>
+
+      </div>
+</div>
+
+   <div class="col-50">
+            <div *ngIf="detailed" class="form-group" [ngClass]="{ 'has-error': searchForm.submitted }">
+              <label>Additional services: </label>
+              <div *ngFor="let additional of additionalServices">
+                <label class="container1">{{additional.name}}
+                  <input type="checkbox" value="additional.id" [(ngModel)]="additional.checked" name="additional.name">
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-50">
+            <div *ngIf="detailed" class="form-group" [ngClass]="{ 'has-error': searchForm.submitted }">
+              <label>Type of accommodation: </label>
+              <div *ngFor="let type of types">
+                <label class="container1">{{type.name}}
+                  <input type="checkbox" value="type.id" [(ngModel)]="type.checked" name="type.name">
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+        
+        <div *ngIf="detailed" class="form-group" [ngClass]="{ 'has-error': searchForm.submitted }">
+          <label>Accommodation category: </label>
+          <div *ngFor="let category of categories">
+            <label class="container1">{{category.name}}
+              <input type="checkbox" value="category.id" [(ngModel)]="category.checked" name="category.name">
+              <span class="checkmark"></span>
+            </label>
+          </div>
+        </div>
+    
+      <div class="form-group">
+        <input type="submit" class="btn" value="Submit">
+      </div>
+
+    </form>
+
+
+    <div *ngIf="!detailed">
+      <a class="btn"  (click)="toggleDetailed()">Click for more detailed search</a>
+    </div>
+    <div *ngIf="detailed">
+      <a class="btn" (click)="toggleDetailed()">Click for simple search</a>
+    </div>
+
+  </div>
+
+  <div class="col">
+        <p class="sm">Results of the search are displayed here</p>
+
+		<p class="life-container">
+      Venice, the capital of northern Italy’s Veneto region, is built on more than 100 small islands in a lagoon in the Adriatic Sea. It has no roads, just canals – including the Grand Canal thoroughfare – lined with Renaissance and Gothic palaces. The central square, Piazza San Marco, contains St. Mark’s Basilica, which is tiled with Byzantine mosaics, and the Campanile bell tower offering views of the city’s red roofs.
+			
+		</p>
+		
+		
+	</div>
+  
+</div>
+
+</div>
