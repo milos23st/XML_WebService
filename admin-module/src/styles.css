@@ -1,0 +1,18 @@
+/* You can add global styles to this file, and also import other style files */
+
+.body {
+    background-color: #b5d4f3;
+    color:#fff;
+    /*#7599be, #c3c4c6, #a2c5e8*/
+    
+
+}
+ul li a {
+    font-size: 1.2em;
+}
+
+.divbody {
+    padding: 2em;
+}
+
+
