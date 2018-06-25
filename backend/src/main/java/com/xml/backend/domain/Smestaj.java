@@ -2,26 +2,35 @@ package com.xml.backend.domain;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+import com.xml.user.User;
 
 
+@Entity
 public class Smestaj {
-	
-	private String id;
+	@Id
+	private Long id;
     private String naziv;
     private Integer kapacitet;
-    private String naseljeno_mesto; // referenca na naseljeno mesto u kom se nalazi
+    private String naseljeno_mesto; 
     private String opis;
-    private List<String> slike;
-    private List<Rezervacija> rezervacije;
+    @OneToMany
     private List<Komentar> komentari;
-    private String agent; //referenca na agenta koji je vlasnik smestaja
-    private String tipSmestaja; //referenca na tip smestaja
-    private String kategorijaSmestaja; //referenca na kategoriju smestaja
+    @OneToOne
+    private User agent;
+    @ManyToOne
+    private Kategorija kategorija;
     
-	public String getId() {
+	
+	public Long getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getNaziv() {
@@ -48,42 +57,26 @@ public class Smestaj {
 	public void setOpis(String opis) {
 		this.opis = opis;
 	}
-	public List<String> getSlike() {
-		return slike;
-	}
-	public void setSlike(List<String> slike) {
-		this.slike = slike;
-	}
-	public List<Rezervacija> getRezervacije() {
-		return rezervacije;
-	}
-	public void setRezervacije(List<Rezervacija> rezervacije) {
-		this.rezervacije = rezervacije;
-	}
+	
 	public List<Komentar> getKomentari() {
 		return komentari;
 	}
 	public void setKomentari(List<Komentar> komentari) {
 		this.komentari = komentari;
 	}
-	public String getAgent() {
+	public User getAgent() {
 		return agent;
 	}
-	public void setAgent(String agent) {
+	public void setAgent(User agent) {
 		this.agent = agent;
 	}
-	public String getTipSmestaja() {
-		return tipSmestaja;
+	public Kategorija getKategorija() {
+		return kategorija;
 	}
-	public void setTipSmestaja(String tipSmestaja) {
-		this.tipSmestaja = tipSmestaja;
+	public void setKategorija(Kategorija kategorija) {
+		this.kategorija = kategorija;
 	}
-	public String getKategorijaSmestaja() {
-		return kategorijaSmestaja;
-	}
-	public void setKategorijaSmestaja(String kategorijaSmestaja) {
-		this.kategorijaSmestaja = kategorijaSmestaja;
-	}
+	
     
     
 

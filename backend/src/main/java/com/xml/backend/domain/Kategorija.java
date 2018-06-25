@@ -1,7 +1,11 @@
 package com.xml.backend.domain;
 
-public class Kategorija {
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
+public class Kategorija {
+	@Id
 	private String id;
     private String naziv;
     

@@ -1,7 +1,11 @@
 package com.xml.backend.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Komentar {
-	
+	@Id
 	private String id;
     private String sadrzaj;
     private String ime;

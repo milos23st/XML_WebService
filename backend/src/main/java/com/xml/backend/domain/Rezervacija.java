@@ -2,17 +2,23 @@ package com.xml.backend.domain;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.xml.user.User;
 
-
+@Entity
 public class Rezervacija {
-	
+	@Id
+	@GeneratedValue
 	private String id;
     private Date datumDolaska;
     private Date datumOdlaska;
-    private String smestajNaziv;
-    private String smestajId;
-    private String korisnikId;
+    @ManyToOne
+    private Smestaj smestaj;
     private boolean izvrsena;
     private Integer cena;
     
@@ -34,24 +40,14 @@ public class Rezervacija {
 	public void setDatumOdlaska(Date datumOdlaska) {
 		this.datumOdlaska = datumOdlaska;
 	}
-	public String getSmestajNaziv() {
-		return smestajNaziv;
+	
+	public Smestaj getSmestaj() {
+		return smestaj;
 	}
-	public void setSmestajNaziv(String smestajNaziv) {
-		this.smestajNaziv = smestajNaziv;
+	public void setSmestaj(Smestaj smestaj) {
+		this.smestaj = smestaj;
 	}
-	public String getSmestajId() {
-		return smestajId;
-	}
-	public void setSmestajId(String smestajId) {
-		this.smestajId = smestajId;
-	}
-	public String getKorisnikId() {
-		return korisnikId;
-	}
-	public void setKorisnikId(String korisnikId) {
-		this.korisnikId = korisnikId;
-	}
+	
 	public boolean isIzvrsena() {
 		return izvrsena;
 	}
