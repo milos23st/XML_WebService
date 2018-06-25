@@ -1,0 +1,161 @@
+
+.navbar {
+  background-color: #2e9ce6;
+}
+.navbar .navbar-brand {
+  color: #e0e8eb;
+}
+.navbar .navbar-brand:hover,
+.navbar .navbar-brand:focus {
+  color: #aee977;
+}
+.navbar .navbar-text {
+  color: #e0e8eb;
+}
+.navbar .navbar-text a {
+  color: #aee977;
+}
+.navbar .navbar-text a:hover,
+.navbar .navbar-text a:focus {
+  color: #aee977; 
+}
+.navbar .navbar-nav .nav-link {
+  color: #e0e8eb;
+  border-radius: .25rem;
+  margin: 0 0.25em;
+}
+.navbar .navbar-nav .nav-link:not(.disabled):hover,
+.navbar .navbar-nav .nav-link:not(.disabled):focus {
+  color: #aee977;
+}
+.navbar .navbar-nav .dropdown-menu {
+  background-color: #2e9ce6;
+  border-color: #9c9ea0;
+}
+.navbar .navbar-nav .dropdown-menu .dropdown-item {
+  color: #e0e8eb;
+}
+.navbar .navbar-nav .dropdown-menu .dropdown-item:hover,
+.navbar .navbar-nav .dropdown-menu .dropdown-item:focus,
+.navbar .navbar-nav .dropdown-menu .dropdown-item.active {
+  color: #aee977;
+  background-color: #9c9ea0;
+}
+.navbar .navbar-nav .dropdown-menu .dropdown-divider {
+  border-top-color: #9c9ea0;
+}
+.navbar .navbar-nav .nav-item.active .nav-link,
+.navbar .navbar-nav .nav-item.active .nav-link:hover,
+.navbar .navbar-nav .nav-item.active .nav-link:focus,
+.navbar .navbar-nav .nav-item.show .nav-link,
+.navbar .navbar-nav .nav-item.show .nav-link:hover,
+.navbar .navbar-nav .nav-item.show .nav-link:focus {
+  color: #aee977;
+  background-color: #9c9ea0;
+}
+.navbar .navbar-toggle {
+  border-color: #9c9ea0;
+}
+.navbar .navbar-toggle:hover,
+.navbar .navbar-toggle:focus {
+  background-color: #9c9ea0;
+}
+.navbar .navbar-toggle .navbar-toggler-icon {
+  color: #e0e8eb;
+}
+.navbar .navbar-collapse,
+.navbar .navbar-form {
+  border-color: #e0e8eb;
+}
+.navbar .navbar-link {
+  color: #e0e8eb;
+}
+.navbar .navbar-link:hover {
+  color: #aee977;
+}
+
+@media (max-width: 575px) {
+  .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item {
+    color: #e0e8eb;
+  }
+  .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+  .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+    color: #aee977;
+  }
+  .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item.active {
+    color: #aee977;
+    background-color: #9c9ea0;
+  }
+}
+
+@media (max-width: 767px) {
+  .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item {
+    color: #e0e8eb;
+  }
+  .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+  .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+    color: #aee977;
+  }
+  .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item.active {
+    color: #aee977;
+    background-color: #9c9ea0;
+  }
+}
+
+@media (max-width: 991px) {
+  .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item {
+    color: #e0e8eb;
+  }
+  .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+  .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+    color: #aee977;
+  }
+  .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item.active {
+    color: #aee977;
+    background-color: #9c9ea0;
+  }
+}
+
+@media (max-width: 1199px) {
+  .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item {
+    color: #e0e8eb;
+  }
+  .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+  .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+    color: #aee977;
+  }
+  .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item.active {
+    color: #aee977;
+    background-color: #9c9ea0;
+  }
+}
+
+.navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item {
+  color: #e0e8eb;
+}
+.navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+.navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+  color: #aee977;
+}
+.navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item.active {
+  color: #aee977;
+  background-color: #9c9ea0;
+}
+
+hr.style18 { 
+  height: 30px; 
+  border-style: solid; 
+  border-color: #fff; 
+  border-width: 1px 0 0 0; 
+  border-radius: 20px; 
+} 
+hr.style18:before { 
+  display: block; 
+  content: ""; 
+  height: 30px; 
+  margin-top: -31px; 
+  border-style: solid; 
+  border-color: #fff; 
+  border-width: 0 0 1px 0; 
+  border-radius: 20px; 
+}
