@@ -1,21 +1,31 @@
 package com.xml.user;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 public class MyUserDetails extends User implements UserDetails {
+	
 	User user;
+	private Collection<? extends GrantedAuthority> authorities;
+	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
-		return AuthorityUtils.createAuthorityList("ROLE_USER");
+		return this.authorities;
 		
 	}
 	public MyUserDetails(User user) {
 		super(user);
+		this.user = user;
+		List<GrantedAuthority> authorities = new ArrayList<>(); 		
+        authorities.add(new SimpleGrantedAuthority(user.getRole().getRole().name()));
+        this.authorities = authorities;
 
 	}
 	@Override
@@ -54,7 +64,7 @@ public class MyUserDetails extends User implements UserDetails {
 	}
 	
 	public Long getId() {
-		return super.getId();
+		return user.getId();
 	}
 
 }

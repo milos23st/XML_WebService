@@ -1,17 +1,23 @@
 package com.xml.controller;
 
+import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,8 +25,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.xml.dto.LoginDTO;
+import com.xml.dto.RegisterUserDTO;
+import com.xml.repository.RoleRepository;
 import com.xml.service.UserService;
 import com.xml.user.JwtToken;
+import com.xml.user.Role;
 import com.xml.user.RoleEnum;
 import com.xml.user.User;
 
@@ -30,7 +39,13 @@ import com.xml.user.User;
 
 
 @Controller
+@RequestMapping("/auth")
 public class UserController {
+	
+	public static final Pattern VALID_EMAIL_ADDRESS_REGEX = 
+		    Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+	public static final Pattern PASSWORD_REGEX_CHAR = 
+		    Pattern.compile("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$", Pattern.CASE_INSENSITIVE);
 	
 	@Autowired
 	private UserService userService;
@@ -41,18 +56,13 @@ public class UserController {
 	@Autowired
 	private JwtToken token;
 	
-	@RequestMapping(method = RequestMethod.POST,value = "/registerUser")
-	public ResponseEntity<?> registerUser(@RequestBody User user) {
-		
-		if(userService.findByEmail(user.getEmail()) == null) {
-			User newUser = userService.save(user);
-			System.out.println("sacuvan");
-			return new ResponseEntity<User>(newUser, HttpStatus.OK);
-		}
-		else return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);		
-	}
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
-	@RequestMapping("/loginUser")
+	@Autowired
+	private RoleRepository roleRepository;	
+	
+	@PostMapping("/loginUser")
 	public ResponseEntity<?> loginUser(@RequestBody LoginDTO login) {
 
 		User user = userService.findByEmail(login.getEmail());
@@ -68,6 +78,90 @@ public class UserController {
 		}else {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
+	}
+	
+	@PostMapping("/loginAdmin")
+	public ResponseEntity<?> loginAdmin(@RequestBody LoginDTO login) {
+
+		User user = userService.findByEmail(login.getEmail());
+
+		if (user.getRole().getRole().equals(RoleEnum.ADMIN)) {
+			Authentication authentication = authenticationManager.authenticate(
+					new UsernamePasswordAuthenticationToken(login.getEmail(), login.getPassword()));
+
+			SecurityContextHolder.getContext().setAuthentication(authentication);
+
+			String jwt = token.generateToken(authentication);
+			return new ResponseEntity<String>(jwt,HttpStatus.OK);
+		}else {
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		}
+	}
+	
+	@PostMapping("/logout")
+	public ResponseEntity<?> logOut(){
+		System.out.print("izlogovan");
+		SecurityContextHolder.getContext().setAuthentication(null);	
+		return new ResponseEntity<>(HttpStatus.OK);
+		
+	}
+	
+	
+	@PostMapping("/registerUser")
+	public ResponseEntity<?> registerUser(@RequestBody RegisterUserDTO registration) {
+		if(registration.getIme().trim().equals("") == false &&
+				registration.getPrezime().trim().equals("") == false &&
+				registration.getEmail().trim().equals("") == false &&
+				validateMail(registration.getEmail())&&
+				validatePassword(registration.getPassword())){
+		if (userService.findByEmail(registration.getEmail()) != null) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		
+		User user = new User();
+		user.setEmail(registration.getEmail());
+		user.setIme(registration.getIme());
+		user.setPrezime(registration.getPrezime());
+		user.setPassword(passwordEncoder.encode(registration.getPassword()));
+		
+		Role role = roleRepository.findByRole(RoleEnum.USER);
+		System.out.print(role.getRole());
+		user.setRole(role);
+		userService.save(user);
+		return new ResponseEntity<>(HttpStatus.OK);
+		}else 
+			System.out.println("Validacija neuspesna");
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+	
+	@PreAuthorize("hasAuthority('ADMIN')")
+	@PostMapping("/registerAgent")
+	public ResponseEntity<?> registerAgent(@Valid @RequestBody RegisterUserDTO registration) {
+		String token = UUID.randomUUID().toString().substring(0, 8);
+				
+		User user = new User();
+		user.setEmail(registration.getEmail());
+		user.setIme(registration.getIme());
+		user.setPrezime(registration.getPrezime());
+		user.setPassword(passwordEncoder.encode(registration.getPassword()));
+		
+		Role role = roleRepository.findByRole(RoleEnum.AGENT);
+		System.out.print(role.getRole());
+		user.setRole(role);
+		userService.save(user);
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+	
+	public static boolean validateMail(String emailStr) {
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(emailStr);
+        return matcher.find();
+	}
+	public boolean validatePassword(String password) {
+		if(password.length() < 10) {return false;}
+		Matcher matcher = PASSWORD_REGEX_CHAR .matcher(password);
+        return matcher.find();
+		
 	}
 	
 
