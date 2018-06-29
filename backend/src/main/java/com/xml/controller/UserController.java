@@ -50,7 +50,7 @@ public class UserController {
 	public static final Pattern VALID_EMAIL_ADDRESS_REGEX = 
 		    Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 	public static final Pattern PASSWORD_REGEX_CHAR = 
-		    Pattern.compile("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$", Pattern.CASE_INSENSITIVE);
+		    Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$");
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 	
 	@Autowired
@@ -131,7 +131,6 @@ public class UserController {
 		user.setPassword(passwordEncoder.encode(registration.getPassword()));
 		
 		Role role = roleRepository.findByRole(RoleEnum.USER);
-		System.out.print(role.getRole());
 		user.setRole(role);
 		userService.save(user);
 		logger.info("Korisnik: " +  registration.getEmail() + " registrovan");
@@ -165,7 +164,7 @@ public class UserController {
         return matcher.find();
 	}
 	public boolean validatePassword(String password) {
-		if(password.length() < 10) {return false;}
+		if(password.length() < 8) {return false;}
 		Matcher matcher = PASSWORD_REGEX_CHAR .matcher(password);
         return matcher.find();
 		

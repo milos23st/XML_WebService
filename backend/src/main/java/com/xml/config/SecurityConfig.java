@@ -50,6 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.anyRequest()
 				.authenticated();
 		http.csrf().disable();
+		http.cors();
 		http.headers().frameOptions().disable();
 	}
 	
