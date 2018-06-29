@@ -10,6 +10,13 @@ import { LoginComponent } from './components/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RegistrationComponent } from './components/registration/registration.component';
 
+import { UserService } from './components/user/user.service';
+
+import { RouterModule } from '@angular/router/src/router_module';
+
+import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,9 +28,12 @@ import { RegistrationComponent } from './components/registration/registration.co
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

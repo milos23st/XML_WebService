@@ -18,6 +18,11 @@ export class AccommodationComponent implements OnInit {
   categories: AccommodationCategory[];
   additionalServices: AdditionalService[];
 
+  results = false;
+  chosenTypes = [];
+  chosenCategories = [];
+  chosenAdditionalServices = [];
+
   dates = [];
   cena: number;
   dateStart: Date;

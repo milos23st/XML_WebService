@@ -3,33 +3,48 @@
   <div class="col">
     <h2>Register</h2>
   </div>
- 
+
 </div>
 <div class="container color-light">
   <div class="col">
     <p class="sm">Use this form below to create an account.</p>
 
-    <form>
+    <form name="form" (ngSubmit)="registerForm.form.valid && register()" class="register-form" #registerForm="ngForm">
       
-      <div class="form-group">
-          <input type="email" class="form-control" placeholder="Enter email..." name="email" required="required">
+      <div class="form-group" [ngClass]="{ 'has-error': registerForm.submitted && !email.valid }">
+          <input type="email" class="form-control" placeholder="Enter email..." name="email" [(ngModel)]="user.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" #email="ngModel" required>
+      <div *ngIf="registerForm.submitted && !email.valid" class="alert alert-danger al1">Invalid email format..use user@gmail.com format instead. !!!</div>
       </div>
 
-      <div class="form-group">
-        <input type="password" class="form-control" name="password" placeholder="Enter password..." required="required">
+      <div class="form-group" [ngClass]="{ 'has-error': registerForm.submitted && !password.valid }">
+        <input type="password" class="form-control" name="password" placeholder="Enter password..." [(ngModel)]="user.password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" #password="ngModel" required>
+      <div *ngIf="registerForm.submitted && !password.valid" class="alert alert-danger al1">Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters !!!</div>
+
       </div>
 
-      <div class="form-group">
-        <input type="text" class="form-control" name="firstName" placeholder="Enter first name..." required="required">
+      <div class="form-group" [ngClass]="{ 'has-error': registerForm.submitted && !firstName.valid }">
+        <input type="text" class="form-control" name="firstName" placeholder="Enter first name..." [(ngModel)]="user.firstName" pattern="[A-Za-z]{1,32}" #firstName="ngModel" required>
+      <div *ngIf="registerForm.submitted && !firstName.valid" class="alert alert-danger al1">No numbers or special characters !!!</div>
       </div>
 
-      <div class="form-group">
-        <input type="text" class="form-control" name="lastName" placeholder="Enter last name..." required="required">
+      <div class="form-group" [ngClass]="{ 'has-error': registerForm.submitted && !lastName.valid }">
+        <input type="text" class="form-control" name="lastName" placeholder="Enter last name..." [(ngModel)]="user.lastName" pattern="[A-Za-z]{1,32}" #lastName="ngModel" required>
+      <div *ngIf="registerForm.submitted && !lastName.valid" class="alert alert-danger al1">No numbers or special characters !!!</div>
+      </div>
+
+      <div class="form-group" [ngClass]="{ 'has-error': registerForm.submitted && !phoneNumber.valid }">
+        <input type="text" class="form-control" name="phoneNumber" placeholder="Enter phone Number..." [(ngModel)]="user.phoneNumber" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" #phoneNumber="ngModel" required>
+      <div *ngIf="registerForm.submitted && !phoneNumber.valid" class="alert alert-danger al1">Invalide phone number format..example: 063-123-4567!!!</div>
+      </div>
+
+      <div class="form-group" [ngClass]="{ 'has-error': registerForm.submitted && !address.valid }">
+        <input type="text" class="form-control" name="address" placeholder="Enter adress..." [(ngModel)]="user.address" pattern="[A-Za-z]{1,32}\s[A-Za-z]{1,32}\s[0-9]{1,3}" #address="ngModel" required>
+      <div *ngIf="registerForm.submitted && !address.valid" class="alert alert-danger al1">Invalid format..example: Bulevar Oslobodjena 6 !!!</div>
       </div>
 
       <div class="form-group">
         <input type="submit" class="btn" value="Submit">
-              <p>Already have an account? <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>  <a routerLink="/login">Sign In</a></p>
+              <p>Already have an account? <a routerLink="/login">Sign In</a></p>
 
       </div>
 
@@ -38,4 +53,3 @@
   </div>
   
 </div>
-
