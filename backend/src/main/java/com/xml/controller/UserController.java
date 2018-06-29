@@ -5,7 +5,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.validation.Valid;
+import javax.xml.ws.Endpoint;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -38,6 +41,8 @@ import com.xml.user.User;
 
 
 
+
+
 @Controller
 @RequestMapping("/auth")
 public class UserController {
@@ -46,6 +51,7 @@ public class UserController {
 		    Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 	public static final Pattern PASSWORD_REGEX_CHAR = 
 		    Pattern.compile("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$", Pattern.CASE_INSENSITIVE);
+	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 	
 	@Autowired
 	private UserService userService;
@@ -63,8 +69,8 @@ public class UserController {
 	private RoleRepository roleRepository;	
 	
 	@PostMapping("/loginUser")
-	public ResponseEntity<?> loginUser(@RequestBody LoginDTO login) {
-
+	public ResponseEntity<?> loginUser(@Valid @RequestBody LoginDTO login) {
+		logger.info("Korisnik: " +  login.getEmail() + " se prijavljuje na sistem");
 		User user = userService.findByEmail(login.getEmail());
 
 		if (user.getRole().getRole().equals(RoleEnum.USER)) {
@@ -72,7 +78,7 @@ public class UserController {
 					new UsernamePasswordAuthenticationToken(login.getEmail(), login.getPassword()));
 
 			SecurityContextHolder.getContext().setAuthentication(authentication);
-
+			logger.info("Korisnik: " +  login.getEmail() + " ulogovan");
 			String jwt = token.generateToken(authentication);
 			return new ResponseEntity<String>(jwt,HttpStatus.OK);
 		}else {
@@ -81,8 +87,8 @@ public class UserController {
 	}
 	
 	@PostMapping("/loginAdmin")
-	public ResponseEntity<?> loginAdmin(@RequestBody LoginDTO login) {
-
+	public ResponseEntity<?> loginAdmin(@Valid @RequestBody LoginDTO login) {
+		logger.info("Admin: " +  login.getEmail() + " se prijavljuje na sistem");
 		User user = userService.findByEmail(login.getEmail());
 
 		if (user.getRole().getRole().equals(RoleEnum.ADMIN)) {
@@ -90,7 +96,7 @@ public class UserController {
 					new UsernamePasswordAuthenticationToken(login.getEmail(), login.getPassword()));
 
 			SecurityContextHolder.getContext().setAuthentication(authentication);
-
+			logger.info("Admin: " +  login.getEmail() + " ulogovan");
 			String jwt = token.generateToken(authentication);
 			return new ResponseEntity<String>(jwt,HttpStatus.OK);
 		}else {
@@ -100,7 +106,7 @@ public class UserController {
 	
 	@PostMapping("/logout")
 	public ResponseEntity<?> logOut(){
-		System.out.print("izlogovan");
+		logger.info("Korisnik: " +  SecurityContextHolder.getContext().getAuthentication().getName() + " izlogovan");
 		SecurityContextHolder.getContext().setAuthentication(null);	
 		return new ResponseEntity<>(HttpStatus.OK);
 		
@@ -108,7 +114,7 @@ public class UserController {
 	
 	
 	@PostMapping("/registerUser")
-	public ResponseEntity<?> registerUser(@RequestBody RegisterUserDTO registration) {
+	public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterUserDTO registration) {
 		if(registration.getIme().trim().equals("") == false &&
 				registration.getPrezime().trim().equals("") == false &&
 				registration.getEmail().trim().equals("") == false &&
@@ -128,6 +134,7 @@ public class UserController {
 		System.out.print(role.getRole());
 		user.setRole(role);
 		userService.save(user);
+		logger.info("Korisnik: " +  registration.getEmail() + " registrovan");
 		return new ResponseEntity<>(HttpStatus.OK);
 		}else 
 			System.out.println("Validacija neuspesna");
@@ -146,9 +153,9 @@ public class UserController {
 		user.setPassword(passwordEncoder.encode(registration.getPassword()));
 		
 		Role role = roleRepository.findByRole(RoleEnum.AGENT);
-		System.out.print(role.getRole());
 		user.setRole(role);
 		userService.save(user);
+		logger.info("Agent: " +  registration.getEmail() + " registrovan");
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	

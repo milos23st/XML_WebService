@@ -1,15 +1,17 @@
 package com.xml.dto;
 
+import javax.validation.constraints.NotNull;
+
 public class RegisterUserDTO {
-	
+	@NotNull
 	private String ime;
-	
+	@NotNull
 	private String prezime;
-
+	@NotNull
 	private String email;
-	
+	@NotNull
 	private String address;
-
+	@NotNull
 	private String password;
 
 	public String getIme() {

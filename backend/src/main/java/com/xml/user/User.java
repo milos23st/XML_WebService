@@ -4,15 +4,24 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.transaction.Transactional;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlTransient;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import com.xml.backend.domain.Poruka;
 import com.xml.backend.domain.Rezervacija;
 @Entity
+@XmlAccessorType(XmlAccessType.FIELD)
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,12 +33,18 @@ public class User {
     private String password;
     private String telefon;
     private String adresa;
-    @OneToMany
+    
+   /* @OneToMany(fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<Rezervacija> rezervacije;
-    @OneToMany
+    
+    @OneToMany(fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<Poruka> poruke;
+    */
     private boolean aktivan;
-    @ManyToOne(optional = false)
+  
+    @ManyToOne(optional = false,fetch = FetchType.EAGER)
 	private Role role;
     
     public User() {}
@@ -42,8 +57,8 @@ public class User {
         this.password = user.getPassword();
         this.telefon = user.getTelefon();
         this.adresa = user.getAdresa();
-        this.rezervacije = user.getRezervacije();
-        this.poruke = user.getPoruke();
+        /*this.rezervacije = user.getRezervacije();
+        this.poruke = user.getPoruke();*/
         this.aktivan = user.isAktivan();
     }
     
@@ -89,7 +104,7 @@ public class User {
 	public void setAdresa(String adresa) {
 		this.adresa = adresa;
 	}
-	public List<Rezervacija> getRezervacije() {
+	/*public List<Rezervacija> getRezervacije() {
 		return rezervacije;
 	}
 	public void setRezervacije(List<Rezervacija> rezervacije) {
@@ -102,7 +117,7 @@ public class User {
 
 	public void setPoruke(List<Poruka> poruke) {
 		this.poruke = poruke;
-	}
+	}*/
 
 	public boolean isAktivan() {
 		return aktivan;

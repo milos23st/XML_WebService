@@ -44,9 +44,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 		.authorizeRequests()
 			.antMatchers("/auth/**").permitAll()
+			.antMatchers("/h2/**").permitAll()
+			.antMatchers("/favicon.ico").permitAll()
+			.antMatchers("/Service").hasAuthority("ADMIN")
 			.anyRequest()
 				.authenticated();
 		http.csrf().disable();
+		http.headers().frameOptions().disable();
 	}
 	
 	@Bean(BeanIds.AUTHENTICATION_MANAGER)
