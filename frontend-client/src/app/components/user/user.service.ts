@@ -16,12 +16,18 @@ export class UserService {
 
   private url_register = 'https://localhost:8443/auth/registerUser';
   
-  private url_login = 'http://localhost:8080/auth/loginUser';
+  private url_login = 'https://localhost:8443/auth/loginUser';
 
    addUser(user: User): Observable<User> {
     return this.http.post<User>(this.url_register, user, httpOptions);
     
   }
+
+  loginUser(id: any): Observable<User> {
+    return this.http.get<User>(this.url_login + '/' + id.sub + '/');
+  }
+
+
 // -------------
 
 

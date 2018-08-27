@@ -1,9 +1,13 @@
 package com.xml.backend.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class DodatnaUsluga {
-	
+	@Id
 	private String id;
-    private String naziv;
+    private String name;
     
 	public String getId() {
 		return id;
@@ -12,10 +16,10 @@ public class DodatnaUsluga {
 		this.id = id;
 	}
 	public String getNaziv() {
-		return naziv;
+		return name;
 	}
 	public void setNaziv(String naziv) {
-		this.naziv = naziv;
+		this.name = naziv;
 	}
     
     

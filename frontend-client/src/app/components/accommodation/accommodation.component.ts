@@ -3,6 +3,7 @@ import { Accommodation } from './accommodation';
 import { AccommodationType } from '../models/AccommodationType';
 import { AccommodationCategory } from '../models/AccommodationCategory';
 import { AdditionalService } from '../models/additionalService';
+import { AccommodationService } from './../services/accommodation.service';
 
 @Component({
   selector: 'app-accommodation',
@@ -30,9 +31,21 @@ export class AccommodationComponent implements OnInit {
 
   submitted = false;
 
-  constructor() { }
+  constructor(
+          /*
+          private accommodationService: AccommodationService
+          */
+          ) { }
 
   ngOnInit() {
+      /*
+      this.accommodationService.getDodatne().subscribe(data => {
+          this.additionalServices = data;
+          for (const d of this.additionalServices) {
+            d.checked = false;
+          }
+        });
+        */
   }
 
   toggleDetailed() {
