@@ -47,6 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/h2/**").permitAll()
 			.antMatchers("/favicon.ico").permitAll()
 			.antMatchers("/Service").hasAuthority("ADMIN")
+			.antMatchers("/dodatneUsluge").permitAll()
 			.anyRequest()
 				.authenticated();
 		http.csrf().disable();
