@@ -1,7 +1,11 @@
 package com.xml.backend.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class NaseljenoMesto {
-	
+	@Id
 	private String id;
     private String naziv;
     private String pttBroj;

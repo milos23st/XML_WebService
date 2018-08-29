@@ -1,15 +1,23 @@
 package com.xml.backend.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import com.xml.user.User;
+
+
 
 @Entity
 public class Komentar {
 	@Id
 	private String id;
     private String sadrzaj;
-    private String ime;
-    private String smestajId;
+    @ManyToOne(fetch = FetchType.EAGER)
+	private User user;
+
+
     private boolean odobren;
     
 	public String getId() {
@@ -24,17 +32,12 @@ public class Komentar {
 	public void setSadrzaj(String sadrzaj) {
 		this.sadrzaj = sadrzaj;
 	}
-	public String getIme() {
-		return ime;
+	
+	public User getUser() {
+		return user;
 	}
-	public void setIme(String ime) {
-		this.ime = ime;
-	}
-	public String getSmestajId() {
-		return smestajId;
-	}
-	public void setSmestajId(String smestajId) {
-		this.smestajId = smestajId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	public boolean isOdobren() {
 		return odobren;

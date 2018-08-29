@@ -2,12 +2,13 @@ package com.xml.backend.domain;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+@Entity
 public class Ocena {
-	
+	@Id
 	private String id;
     private Integer ocena;
-    private String smestaj;
-    private List<String> korisnici;
     
 	public String getId() {
 		return id;
@@ -21,19 +22,7 @@ public class Ocena {
 	public void setOcena(Integer ocena) {
 		this.ocena = ocena;
 	}
-	public String getSmestaj() {
-		return smestaj;
-	}
-	public void setSmestaj(String smestaj) {
-		this.smestaj = smestaj;
-	}
-	public List<String> getKorisnici() {
-		return korisnici;
-	}
-	public void setKorisnici(List<String> korisnici) {
-		this.korisnici = korisnici;
-	}
-    
+
     
 
 }
