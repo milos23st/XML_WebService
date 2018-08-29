@@ -38,7 +38,14 @@ public class SmestajServiceImpl implements SmestajService {
 
 	@Override
 	public List<Smestaj> searchBynas(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Smestaj> smestaji = smestajRepository.findAll();
+        List<Smestaj> pronadjeni = new ArrayList<Smestaj>();
+
+        for(Smestaj s: smestaji) {
+            if(s.getNaseljenoMesto().getId().equals(id)) {
+                pronadjeni.add(s);
+            }
+        }
+        return pronadjeni;
 	}
 }

@@ -3,21 +3,39 @@ package com.xml.backend.domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import com.xml.user.User;
 
 @Entity
 public class Poruka {
 	@Id
 	@GeneratedValue
-	private String id;
+	private Long id;
     private String sadrzaj;
-    private String posaljilac;
-    private String primalac;
+    @ManyToOne
+    private User posaljilac;
+    @ManyToOne
+    private User primalac;
     
-	public String getId() {
+	
+	public Long getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
+	}
+	public User getPosaljilac() {
+		return posaljilac;
+	}
+	public void setPosaljilac(User posaljilac) {
+		this.posaljilac = posaljilac;
+	}
+	public User getPrimalac() {
+		return primalac;
+	}
+	public void setPrimalac(User primalac) {
+		this.primalac = primalac;
 	}
 	public String getSadrzaj() {
 		return sadrzaj;
@@ -25,18 +43,7 @@ public class Poruka {
 	public void setSadrzaj(String sadrzaj) {
 		this.sadrzaj = sadrzaj;
 	}
-	public String getPosaljilac() {
-		return posaljilac;
-	}
-	public void setPosaljilac(String posaljilac) {
-		this.posaljilac = posaljilac;
-	}
-	public String getPrimalac() {
-		return primalac;
-	}
-	public void setPrimalac(String primalac) {
-		this.primalac = primalac;
-	}
+	
     
     
 

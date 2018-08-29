@@ -19,4 +19,9 @@ public class DodatnaUslugaServiceImpl implements DodatnaUslugaService {
 		return repository.findAll();
 	}
 
+	@Override
+	public DodatnaUsluga findOne(Long id) {
+		return repository.getOne(id);
+	}
+
 }

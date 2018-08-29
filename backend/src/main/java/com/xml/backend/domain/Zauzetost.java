@@ -3,9 +3,11 @@ package com.xml.backend.domain;
 import java.util.Date;
 
 import javax.persistence.Entity;
-
+import javax.persistence.Id;
+@Entity
 public class Zauzetost {
-
+	@Id
+	private Long id;
 	private Date pocetak;
     private Date kraj;
     

@@ -25,15 +25,19 @@ public class Smestaj {
     private String naziv;
     private Integer kapacitet;
     @ManyToOne
-    private NaseljenoMesto naseljenoMesto; 
+    private NaseljenoMesto naseljenomesto; 
     private String opis;
 	private String address;
+	@OneToMany
+	private List<Zauzetost> zauzeto;
     @OneToMany
     private List<Komentar> komentari;
     @OneToOne
     private User agent;
     @ManyToOne
     private Kategorija kategorija;
+    @ManyToOne
+    private TipSmestaja tipSmestaja;
     @OneToMany
 	private Set<SmestajSlika> images = new HashSet<SmestajSlika>();
     @ManyToMany(fetch = FetchType.EAGER)
@@ -42,6 +46,18 @@ public class Smestaj {
     private List<Ocena> rating = new ArrayList<Ocena>();
     
 	
+	public TipSmestaja getTipSmestaja() {
+		return tipSmestaja;
+	}
+	public void setTipSmestaja(TipSmestaja tipSmestaja) {
+		this.tipSmestaja = tipSmestaja;
+	}
+	public List<Zauzetost> getZauzeto() {
+		return zauzeto;
+	}
+	public void setZauzeto(List<Zauzetost> zauzeto) {
+		this.zauzeto = zauzeto;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -87,10 +103,10 @@ public class Smestaj {
 		this.kategorija = kategorija;
 	}
 	public NaseljenoMesto getNaseljenoMesto() {
-		return naseljenoMesto;
+		return naseljenomesto;
 	}
 	public void setNaseljenoMesto(NaseljenoMesto naseljenoMesto) {
-		this.naseljenoMesto = naseljenoMesto;
+		this.naseljenomesto = naseljenoMesto;
 	}
 	public String getAddress() {
 		return address;

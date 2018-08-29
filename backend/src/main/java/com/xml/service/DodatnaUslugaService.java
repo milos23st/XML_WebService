@@ -8,5 +8,6 @@ import com.xml.backend.domain.DodatnaUsluga;
 public interface DodatnaUslugaService {
 	
 	List<DodatnaUsluga> getAll();
+	DodatnaUsluga findOne(Long id);
 
 }

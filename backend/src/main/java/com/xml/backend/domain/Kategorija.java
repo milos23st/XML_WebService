@@ -6,13 +6,13 @@ import javax.persistence.Id;
 @Entity
 public class Kategorija {
 	@Id
-	private String id;
+	private Long id;
     private String naziv;
     
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getNaziv() {
