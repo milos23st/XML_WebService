@@ -32,14 +32,14 @@
       <div *ngIf="registerForm.submitted && !prezime.valid" class="alert alert-danger al1">No numbers or special characters !!!</div>
       </div>
 
-      <div class="form-group" [ngClass]="{ 'has-error': registerForm.submitted && !phoneNumber.valid }">
-        <input type="text" class="form-control" name="phoneNumber" placeholder="Enter phone Number..." [(ngModel)]="user.phoneNumber" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" #phoneNumber="ngModel" required>
-      <div *ngIf="registerForm.submitted && !phoneNumber.valid" class="alert alert-danger al1">Invalide phone number format..example: 063-123-4567!!!</div>
+      <div class="form-group" [ngClass]="{ 'has-error': registerForm.submitted && !telefon.valid }">
+        <input type="text" class="form-control" name="telefon" placeholder="Enter phone Number..." [(ngModel)]="user.telefon" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" #telefon="ngModel" required>
+      <div *ngIf="registerForm.submitted && !telefon.valid" class="alert alert-danger al1">Invalide phone number format..example: 063-123-4567!!!</div>
       </div>
 
-      <div class="form-group" [ngClass]="{ 'has-error': registerForm.submitted && !address.valid }">
-        <input type="text" class="form-control" name="address" placeholder="Enter adress..." [(ngModel)]="user.address" pattern="[A-Za-z]{1,32}\s[A-Za-z]{1,32}\s[0-9]{1,3}" #address="ngModel" required>
-      <div *ngIf="registerForm.submitted && !address.valid" class="alert alert-danger al1">Invalid format..example: Bulevar Oslobodjena 6 !!!</div>
+      <div class="form-group" [ngClass]="{ 'has-error': registerForm.submitted && !adresa.valid }">
+        <input type="text" class="form-control" name="adresa" placeholder="Enter adress..." [(ngModel)]="user.adresa" pattern="[A-Za-z]{1,32}\s[A-Za-z]{1,32}\s[0-9]{1,3}" #adresa="ngModel" required>
+      <div *ngIf="registerForm.submitted && !adresa.valid" class="alert alert-danger al1">Invalid format..example: Bulevar Oslobodjenja 6 !!!</div>
       </div>
 
       <div class="form-group">
