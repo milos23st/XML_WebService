@@ -7,7 +7,7 @@ import javax.persistence.Id;
 public class Kategorija {
 	@Id
 	private Long id;
-    private String naziv;
+    private String name;
     
 	public Long getId() {
 		return id;
@@ -15,12 +15,13 @@ public class Kategorija {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getNaziv() {
-		return naziv;
+	public String getName() {
+		return name;
 	}
-	public void setNaziv(String naziv) {
-		this.naziv = naziv;
+	public void setName(String name) {
+		this.name = name;
 	}
+	
     
     
 }

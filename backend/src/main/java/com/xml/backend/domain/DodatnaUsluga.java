@@ -15,12 +15,13 @@ public class DodatnaUsluga {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getNaziv() {
+	public String getName() {
 		return name;
 	}
-	public void setNaziv(String naziv) {
-		this.name = naziv;
+	public void setName(String name) {
+		this.name = name;
 	}
+	
     
     
 

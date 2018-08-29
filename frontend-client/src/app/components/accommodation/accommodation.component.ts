@@ -32,20 +32,32 @@ export class AccommodationComponent implements OnInit {
   submitted = false;
 
   constructor(
-          /*
+          
           private accommodationService: AccommodationService
-          */
+          
           ) { }
 
   ngOnInit() {
-      /*
+      
       this.accommodationService.getDodatne().subscribe(data => {
           this.additionalServices = data;
           for (const d of this.additionalServices) {
             d.checked = false;
           }
         });
-        */
+        
+      this.accommodationService.getTipovi().subscribe(data => {
+      this.types = data;
+      for (const t of this.types) {
+        t.checked = false;
+      }
+    });
+    this.accommodationService.getKategorije().subscribe(data => {
+      this.categories = data;
+      for (const k of this.categories) {
+        k.checked = false;
+      }
+    });
   }
 
   toggleDetailed() {

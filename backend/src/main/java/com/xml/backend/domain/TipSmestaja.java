@@ -13,8 +13,7 @@ public class TipSmestaja {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column
-	private String tip;
+	private String name;
 
 	public Long getId() {
 		return id;
@@ -24,13 +23,15 @@ public class TipSmestaja {
 		this.id = id;
 	}
 
-	public String getTip() {
-		return tip;
+	public String getName() {
+		return name;
 	}
 
-	public void setTip(String tip) {
-		this.tip = tip;
+	public void setName(String name) {
+		this.name = name;
 	}
+
+	
 	
 	
 
