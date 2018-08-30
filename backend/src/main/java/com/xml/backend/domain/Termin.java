@@ -1,15 +1,20 @@
 package com.xml.backend.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+@Entity
 public class Termin {
-
-	private String id;
+	@Id
+	@GeneratedValue
+	private Long id;
 	private Integer mesec;
 	private int cena;
 	 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public Integer getMesec() {

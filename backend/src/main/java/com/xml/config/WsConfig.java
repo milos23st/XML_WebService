@@ -16,7 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.xml.service.soap.SmestajServiceSoap;
 import com.xml.service.soap.UserServiceSoap;
+
 
 
 
@@ -31,12 +33,21 @@ public class WsConfig {
 	@Autowired
 	UserServiceSoap userServiceSoap;
 	
+	@Autowired
+	SmestajServiceSoap smestajServiceSoap;
+	
 	
 	@Bean
 	public Endpoint endpoint1() {
         EndpointImpl endpoint = new EndpointImpl(bus, userServiceSoap);
         endpoint.publish("/userServiceSoap");
         System.out.print("***********************"+endpoint.getPublishedEndpointUrl()+"************************************");
+        return endpoint;
+    }
+	@Bean
+	public Endpoint endpoint2() {
+        EndpointImpl endpoint = new EndpointImpl(bus, smestajServiceSoap);
+        endpoint.publish("/smestajServiceSoap");  
         return endpoint;
     }
 	
