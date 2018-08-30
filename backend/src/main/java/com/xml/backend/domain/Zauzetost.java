@@ -3,14 +3,21 @@ package com.xml.backend.domain;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 @Entity
 public class Zauzetost {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Date pocetak;
     private Date kraj;
-    
+    public Zauzetost() {}
+    public Zauzetost(Date dat_pocetak, Date dat_kraj) {
+        this.pocetak = dat_pocetak;
+        this.kraj = dat_kraj;
+    }
 	public Date getPocetak() {
 		return pocetak;
 	}

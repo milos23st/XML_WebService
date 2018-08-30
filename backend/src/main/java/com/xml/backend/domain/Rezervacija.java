@@ -14,18 +14,27 @@ import com.xml.user.User;
 public class Rezervacija {
 	@Id
 	@GeneratedValue
-	private String id;
+	private Long id;
     private Date datumDolaska;
     private Date datumOdlaska;
     @ManyToOne
     private Smestaj smestaj;
     private boolean izvrsena;
     private Integer cena;
+    @ManyToOne
+    private User user;
     
-	public String getId() {
+    
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public Long getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public Date getDatumDolaska() {
@@ -60,6 +69,7 @@ public class Rezervacija {
 	public void setCena(Integer cena) {
 		this.cena = cena;
 	}
+	
     
     
 
