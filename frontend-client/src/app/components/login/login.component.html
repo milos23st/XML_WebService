@@ -10,14 +10,14 @@
   <div class="col">
     <p class="sm">Use this form below to log in to your account.</p>
 
-    <form>
+    <form (ngSubmit)="login()">
 
       <div class="form-group">
-          <input type="email" class="form-control" placeholder="Enter email..." name="email" required="required">
+          <input type="email" class="form-control" [(ngModel)]="model.email" #email="ngModel" placeholder="Enter email..." name="email" required="required">
       </div>
 
       <div class="form-group">
-        <input type="password" class="form-control" name="password" placeholder="Enter password..." required="required">
+        <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" placeholder="Enter password..." required="required">
       </div>
 
       <div class="form-group">

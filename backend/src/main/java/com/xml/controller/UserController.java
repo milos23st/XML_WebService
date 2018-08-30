@@ -1,5 +1,6 @@
 package com.xml.controller;
 
+import java.util.Collections;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -7,6 +8,7 @@ import java.util.regex.Pattern;
 import javax.validation.Valid;
 import javax.xml.ws.Endpoint;
 
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +45,8 @@ import com.xml.user.User;
 
 
 
+
+
 @Controller
 @RequestMapping("/auth")
 public class UserController {
@@ -68,7 +72,7 @@ public class UserController {
 	@Autowired
 	private RoleRepository roleRepository;	
 	
-	@PostMapping("/loginUser")
+	@PostMapping(value ="/loginUser", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> loginUser(@Valid @RequestBody LoginDTO login) {
 		logger.info("Korisnik: " +  login.getEmail() + " se prijavljuje na sistem");
 		User user = userService.findByEmail(login.getEmail());
@@ -80,7 +84,7 @@ public class UserController {
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 			logger.info("Korisnik: " +  login.getEmail() + " ulogovan");
 			String jwt = token.generateToken(authentication);
-			return new ResponseEntity<String>(jwt,HttpStatus.OK);
+			return new ResponseEntity<>(Collections.singletonMap("response", jwt),HttpStatus.OK);
 		}else {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
@@ -98,7 +102,7 @@ public class UserController {
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 			logger.info("Admin: " +  login.getEmail() + " ulogovan");
 			String jwt = token.generateToken(authentication);
-			return new ResponseEntity<String>(jwt,HttpStatus.OK);
+			return new ResponseEntity<String>(HttpStatus.OK);
 		}else {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
