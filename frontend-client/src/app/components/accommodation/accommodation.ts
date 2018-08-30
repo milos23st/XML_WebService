@@ -8,7 +8,7 @@ import { Comment } from './../models/comment';
 export class Accommodation {
     constructor(
     public name: string,
-    public capacity: number,
+    public kapacitet: number,
     public populatedPlace: PopulatedPlace,
     public description: string,
     public image: string,

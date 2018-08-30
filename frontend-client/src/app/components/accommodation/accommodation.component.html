@@ -14,12 +14,12 @@
   <div class="col">
     <p class="sm">Use this form below to search through accommodations</p>
 
-    <form (ngSubmit)="searchForm.form.valid && onSubmit()" #searchForm="ngForm" >
+    <form (ngSubmit)="searchForm.form.valid && searchForAccommodation() && onSubmit()" #searchForm="ngForm" >
 
-      <div class="form-group" [ngClass]="{ 'has-error': searchForm.submitted && !city.valid }">
-          <label for="city">Destination: </label>
-          <input type="text" id="city" class="form-control" placeholder="Enter destination..." name="city" [(ngModel)]="model.city" #city="ngModel" required>
-          <div *ngIf="searchForm.submitted && !city.valid" class="alert alert-danger al">Destination required !!!</div>
+      <div class="form-group" [ngClass]="{ 'has-error': searchForm.submitted && !mesto.valid }">
+          <label for="mesto">Destination: </label>
+          <input type="text" id="mesto" class="form-control" placeholder="Enter destination..." name="mesto" [(ngModel)]="model.mesto" #mesto="ngModel" required>
+          <div *ngIf="searchForm.submitted && !mesto.valid" class="alert alert-danger al">Destination required !!!</div>
       </div>
 
       <div class="form-group" [ngClass]="{ 'has-error': searchForm.submitted && !places.valid }">

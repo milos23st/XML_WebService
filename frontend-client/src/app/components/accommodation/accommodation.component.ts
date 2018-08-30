@@ -13,7 +13,7 @@ import { AccommodationService } from './../services/accommodation.service';
 export class AccommodationComponent implements OnInit {
 
   detailed = false;
-  accommodation: Accommodation;
+  accommodation: Accommodation[];
   model: any = {};
   types: AccommodationType[];
   categories: AccommodationCategory[];
@@ -26,8 +26,8 @@ export class AccommodationComponent implements OnInit {
 
   dates = [];
   cena: number;
-  dateStart: Date;
-  dateEnd: Date;
+  datumOd: Date;
+  datumDo: Date;
 
   submitted = false;
 
@@ -58,7 +58,69 @@ export class AccommodationComponent implements OnInit {
         k.checked = false;
       }
     });
+
+     this.accommodationService.getAccommodations().subscribe(data => {
+      this.accommodation = data;
+      this.results = true;
+     });
+
   }
+
+
+  searchForAccommodation() {
+    this.chosenAdditionalServices = [];
+    this.chosenCategories = [];
+    this.chosenTypes = [];
+    for (const d of this.additionalServices) {
+      if (d.checked) {
+        this.chosenAdditionalServices.push(d.id);
+      }
+    }
+    for (const t of this.types) {
+      if (t.checked) {
+        this.chosenTypes.push(t.id);
+      }
+    }
+    for (const k of this.categories) {
+      if (k.checked) {
+        this.chosenCategories.push(k.id);
+      }
+    }
+    this.dates = [];
+    this.dates.push(this.model.datumOd);
+    this.dates.push(this.model.datumDo);
+    localStorage.setItem('date1', this.dates[0]);
+    localStorage.setItem('date2', this.dates[1]);
+    this.accommodationService
+      .search(
+        this.model,
+        this.chosenAdditionalServices,
+        this.chosenCategories,
+        this.chosenTypes
+      )
+      .subscribe(data => {
+        this.accommodation = data;
+        if (this.accommodation.length === 0) {
+          console.log('nije pronadjen takav smestaj');
+        } else {
+          // tslint:disable-next-line:prefer-const
+          let i: number;
+          for (i = 0; i < this.accommodation.length; i++) {
+            this.datumOd = new Date(this.model.datumOd);
+            this.datumDo = new Date(this.model.datumDo);
+            this.accommodation[i].price = 0;
+            while (this.datumOd <= this.datumDo) {
+              this.accommodation[i].price += this.accommodation[i].terms[this.datumOd.getMonth()].price;
+              this.datumOd = new Date(this.datumOd.getTime() + (60 * 60 * 24 * 1000));
+           }
+           localStorage.setItem(this.accommodation[i].id, this.accommodation[i].price.toString());
+          }
+          this.results = true;
+        }
+      });
+    window.scroll(0, 0);
+  }
+
 
   toggleDetailed() {
     this.detailed = !this.detailed;
