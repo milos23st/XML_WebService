@@ -25,7 +25,7 @@ import com.xml.user.User;
 public class Smestaj {
 	@Id
 	private Long id;
-    private String naziv;
+    private String name;
     private Integer kapacitet;
     @ManyToOne
     private NaseljenoMesto naseljenomesto; 
@@ -67,11 +67,12 @@ public class Smestaj {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getNaziv() {
-		return naziv;
+	
+	public String getName() {
+		return name;
 	}
-	public void setNaziv(String naziv) {
-		this.naziv = naziv;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public Integer getKapacitet() {
 		return kapacitet;

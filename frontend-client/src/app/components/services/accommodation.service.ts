@@ -43,6 +43,10 @@ export class AccommodationService {
     return this.http.get<Accommodation[]>(this.url_smestaj, httpOptions);
   }
 
+  getAccommodationById(id: string): Observable<Accommodation> {
+    return this.http.get<Accommodation>(this.url_smestaj + '/' + id, httpOptions);
+  }
+
   search(model: any, dodatne: String[], tipovi: String[], kategorije: String[]) {
     this.url_check_dod = '';
     this.url_check_kat = '';

@@ -6,7 +6,8 @@
   </div>
 
   <div class="col">
-		<h2> Results</h2>
+    <h2> Results</h2>
+
 	</div>
 
 </div>
@@ -101,7 +102,38 @@
 		<p class="life-container">
       Venice, the capital of northern Italy’s Veneto region, is built on more than 100 small islands in a lagoon in the Adriatic Sea. It has no roads, just canals – including the Grand Canal thoroughfare – lined with Renaissance and Gothic palaces. The central square, Piazza San Marco, contains St. Mark’s Basilica, which is tiled with Byzantine mosaics, and the Campanile bell tower offering views of the city’s red roofs.
 			
-		</p>
+    </p>
+    
+    <!-- ---------------------------------------------------------------------- -->
+
+    <div *ngIf="results">
+  <div class="results">
+
+    <h1>
+      <b>Rezultati pretrage:</b>
+    </h1>
+    <div *ngFor="let a of accommodation">
+
+      <!--
+      <a [routerLink]="['detalji/' + a.id]"></a>
+        -->
+
+
+        <div class="life-container">
+          <h2> {{a.name}}</h2>
+          <h5> <p class="pLife">Description:</p> {{a.opis}}</h5>
+          <h5> <p class="pLife">Category:</p> {{a.kategorija.name}}</h5>
+          <h5> <p class="pLife">Capacity:</p> {{a.kapacitet}}</h5>
+          <h5> <p class="pLife">Price:</p> {{a.price}}</h5>
+          <h5> <p class="pLife">Reviews:</p></h5>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+
+    <!-- ---------------------------------------------------------------------- -->
 		
 		
 	</div>

@@ -33,6 +33,14 @@ input.btn {
     font-weight:bold;
     cursor:pointer;
 }
+.life-container h2 {
+    text-decoration: underline;
+    text-align: center;
+    text-shadow: 3px 2px grey;
+}
+.life-container .pLife {
+    text-shadow: 2px 1px grey;
+}
 .form-control {
     border: 0;
     padding: 1em;
