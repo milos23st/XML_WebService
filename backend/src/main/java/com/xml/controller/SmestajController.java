@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,6 +25,7 @@ import com.xml.backend.domain.Zauzetost;
 import com.xml.service.DodatnaUslugaService;
 import com.xml.service.NaseljenoMestoService;
 import com.xml.service.SmestajService;
+
 
 
 
@@ -47,6 +49,20 @@ public class SmestajController {
 		return new ResponseEntity<List<Smestaj>>(smestajService.findAll(), HttpStatus.OK);
 		
 	}
+	@RequestMapping(
+            method = RequestMethod.GET,
+            value ="/smestaj/{id}",
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<Smestaj> getSmestaj(@PathVariable("id") String id) {
+        Smestaj smestaj = this.smestajService.findOne(Long.parseLong(id));
+        if(smestaj == null) {
+            return new ResponseEntity<Smestaj>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<Smestaj>(smestaj, HttpStatus.OK);
+        }
+    }
+	
 	@RequestMapping(
             method = RequestMethod.GET,
             value = "/smestaj/search",
