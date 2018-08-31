@@ -32,20 +32,20 @@ export class AccommodationComponent implements OnInit {
   submitted = false;
 
   constructor(
-          
+
           private accommodationService: AccommodationService
-          
+
           ) { }
 
   ngOnInit() {
-      
+
       this.accommodationService.getDodatne().subscribe(data => {
           this.additionalServices = data;
           for (const d of this.additionalServices) {
             d.checked = false;
           }
         });
-        
+
       this.accommodationService.getTipovi().subscribe(data => {
       this.types = data;
       for (const t of this.types) {
@@ -89,8 +89,8 @@ export class AccommodationComponent implements OnInit {
     this.dates = [];
     this.dates.push(this.model.datumOd);
     this.dates.push(this.model.datumDo);
-    localStorage.setItem('date1', this.dates[0]);
-    localStorage.setItem('date2', this.dates[1]);
+    localStorage.setItem('datumOd', this.dates[0]);
+    localStorage.setItem('datumOd', this.dates[1]);
     this.accommodationService
       .search(
         this.model,

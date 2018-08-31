@@ -114,11 +114,8 @@
     </h1>
     <div *ngFor="let a of accommodation">
 
-      <!--
-      <a [routerLink]="['detalji/' + a.id]"></a>
-        -->
-
-
+      <a [routerLink]="['details/' + a.id]">
+        
         <div class="life-container">
           <h2> {{a.name}}</h2>
           <h5> <p class="pLife">Description:</p> {{a.opis}}</h5>
@@ -127,7 +124,7 @@
           <h5> <p class="pLife">Price:</p> {{a.price}}</h5>
           <h5> <p class="pLife">Reviews:</p></h5>
         </div>
-      
+      </a>
     </div>
   </div>
 </div>

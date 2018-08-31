@@ -15,6 +15,7 @@ import { UserService } from './components/user/user.service';
 import { RouterModule } from '@angular/router/src/router_module';
 
 import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http';
+import { DetailsComponent } from './components//accommodation/details/details.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http'
     NavigationComponent,
     AccommodationComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    DetailsComponent
   ],
   imports: [
     BrowserModule,

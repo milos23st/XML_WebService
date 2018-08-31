@@ -20,14 +20,14 @@ const httpOptions = {
 
 
 export class AccommodationService {
-    
+
   private url_dodatnaUsl = 'https://localhost:8443/dodatneUsluge';
   private url_tip = 'https://localhost:8443/tipovi';
-  private url_kategorija = 'https://localhost:8443/kategorije';  
+  private url_kategorija = 'https://localhost:8443/kategorije';
 
   private url_smestaj = 'https://localhost:8443/smestaj';
 
-  
+
   private url_check_dod = '';
   private url_check_tip = '';
   private url_check_kat = '';
@@ -70,8 +70,7 @@ export class AccommodationService {
     return this.http.get<Accommodation[]>(this.url_smestaj + '/search?mesto=' + model.mesto + '&brOsoba=' + model.peopleM +
     '&datumOd=' + model.dateS + '&datumDo=' + model.dateE + this.url_check_dod + this.url_check_tip + this.url_check_kat);
   }
-  
-  
+
   getDodatne(): Observable<AdditionalService[]> {
       return this.http.get<AdditionalService[]>(this.url_dodatnaUsl, httpOptions);
     }
@@ -83,5 +82,5 @@ export class AccommodationService {
   getKategorije(): Observable<AccommodationCategory[]> {
       return this.http.get<AccommodationCategory[]>(this.url_kategorija, httpOptions);
     }
-  
+
 }

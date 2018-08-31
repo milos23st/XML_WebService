@@ -9,7 +9,7 @@ export class Accommodation {
     constructor(
     public name: string,
     public kapacitet: number,
-    public populatedPlace: PopulatedPlace,
+    public naseljenomesto: PopulatedPlace,
     public opis: string,
     public image: string,
     public kategorija: AccommodationCategory,

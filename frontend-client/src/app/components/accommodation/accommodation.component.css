@@ -32,6 +32,7 @@ input.btn {
     padding:.5em;
     font-weight:bold;
     cursor:pointer;
+    color: #fff;
 }
 .life-container h2 {
     text-decoration: underline;
