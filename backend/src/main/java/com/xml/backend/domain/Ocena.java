@@ -4,7 +4,10 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 @Entity
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Ocena {
 	@Id
 	private String id;

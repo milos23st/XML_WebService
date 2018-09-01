@@ -1,0 +1,639 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="https://bezbednost/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="SmestajService" targetNamespace="https://bezbednost/">
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="https://bezbednost/" elementFormDefault="unqualified" targetNamespace="https://bezbednost/" version="1.0">
+            <xs:element name="findAllAccomodations" type="tns:findAllAccomodations"/>
+            <xs:element name="findAllAccomodationsResponse" type="tns:findAllAccomodationsResponse"/>
+            <xs:element name="findAllCategories" type="tns:findAllCategories"/>
+            <xs:element name="findAllCategoriesResponse" type="tns:findAllCategoriesResponse"/>
+            <xs:element name="findAllServices" type="tns:findAllServices"/>
+            <xs:element name="findAllServicesResponse" type="tns:findAllServicesResponse"/>
+            <xs:element name="findAllTypes" type="tns:findAllTypes"/>
+            <xs:element name="findAllTypesResponse" type="tns:findAllTypesResponse"/>
+            <xs:element name="findDodatnaUslugaById" type="tns:findDodatnaUslugaById"/>
+            <xs:element name="findDodatnaUslugaByIdResponse" type="tns:findDodatnaUslugaByIdResponse"/>
+            <xs:element name="findKategorijaById" type="tns:findKategorijaById"/>
+            <xs:element name="findKategorijaByIdResponse" type="tns:findKategorijaByIdResponse"/>
+            <xs:element name="findKomentarById" type="tns:findKomentarById"/>
+            <xs:element name="findKomentarByIdResponse" type="tns:findKomentarByIdResponse"/>
+            <xs:element name="findSlikaById" type="tns:findSlikaById"/>
+            <xs:element name="findSlikaByIdResponse" type="tns:findSlikaByIdResponse"/>
+            <xs:element name="findSmestajById" type="tns:findSmestajById"/>
+            <xs:element name="findSmestajByIdResponse" type="tns:findSmestajByIdResponse"/>
+            <xs:element name="findTerminById" type="tns:findTerminById"/>
+            <xs:element name="findTerminByIdResponse" type="tns:findTerminByIdResponse"/>
+            <xs:element name="findTipById" type="tns:findTipById"/>
+            <xs:element name="findTipByIdResponse" type="tns:findTipByIdResponse"/>
+            <xs:element name="getSmestajeAgenta" type="tns:getSmestajeAgenta"/>
+            <xs:element name="getSmestajeAgentaResponse" type="tns:getSmestajeAgentaResponse"/>
+            <xs:element name="save" type="tns:save"/>
+            <xs:element name="saveResponse" type="tns:saveResponse"/>
+            <xs:element name="saveSmestajSlika" type="tns:saveSmestajSlika"/>
+            <xs:element name="saveSmestajSlikaResponse" type="tns:saveSmestajSlikaResponse"/>
+            <xs:element name="saveTermin" type="tns:saveTermin"/>
+            <xs:element name="saveTerminResponse" type="tns:saveTerminResponse"/>
+            <xs:complexType name="saveSmestajSlika">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="arg0" type="tns:smestajSlika"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="smestajSlika">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="id" type="xs:long"/>
+                    <xs:element minOccurs="0" name="smestaj" type="tns:smestaj"/>
+                    <xs:element minOccurs="0" name="url" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="smestaj">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="id" type="xs:long"/>
+                    <xs:element minOccurs="0" name="name" type="xs:string"/>
+                    <xs:element minOccurs="0" name="kapacitet" type="xs:int"/>
+                    <xs:element minOccurs="0" name="naseljenomesto" type="tns:naseljenoMesto"/>
+                    <xs:element minOccurs="0" name="opis" type="xs:string"/>
+                    <xs:element minOccurs="0" name="address" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="zauzeto" nillable="true" type="tns:zauzetost"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="komentari" nillable="true" type="tns:komentar"/>
+                    <xs:element minOccurs="0" name="agent" type="tns:user"/>
+                    <xs:element minOccurs="0" name="kategorija" type="tns:kategorija"/>
+                    <xs:element minOccurs="0" name="tipSmestaja" type="tns:tipSmestaja"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="images" nillable="true" type="tns:smestajSlika"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="dodatneUsluge" nillable="true" type="tns:dodatnaUsluga"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="rating" nillable="true" type="tns:ocena"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="naseljenoMesto">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="drzava" type="xs:string"/>
+                    <xs:element minOccurs="0" name="id" type="xs:long"/>
+                    <xs:element minOccurs="0" name="naziv" type="xs:string"/>
+                    <xs:element minOccurs="0" name="pttBroj" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="zauzetost">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="kraj" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="pocetak" type="xs:dateTime"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="komentar">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="id" type="xs:string"/>
+                    <xs:element name="odobren" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="sadrzaj" type="xs:string"/>
+                    <xs:element minOccurs="0" name="user" type="tns:user"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="user">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="id" type="xs:long"/>
+                    <xs:element minOccurs="0" name="ime" type="xs:string"/>
+                    <xs:element minOccurs="0" name="prezime" type="xs:string"/>
+                    <xs:element minOccurs="0" name="email" type="xs:string"/>
+                    <xs:element minOccurs="0" name="password" type="xs:string"/>
+                    <xs:element minOccurs="0" name="telefon" type="xs:string"/>
+                    <xs:element minOccurs="0" name="adresa" type="xs:string"/>
+                    <xs:element name="aktivan" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="role" type="tns:role"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="role">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="id" type="xs:long"/>
+                    <xs:element minOccurs="0" name="role" type="tns:roleEnum"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="kategorija">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="id" type="xs:long"/>
+                    <xs:element minOccurs="0" name="name" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="tipSmestaja">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="id" type="xs:long"/>
+                    <xs:element minOccurs="0" name="name" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="dodatnaUsluga">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="id" type="xs:long"/>
+                    <xs:element minOccurs="0" name="name" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ocena">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="id" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ocena" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="saveSmestajSlikaResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="return" type="tns:smestajSlika"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="findSmestajById">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="arg0" type="xs:long"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="findSmestajByIdResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="return" type="tns:smestaj"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="findTerminById">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="arg0" type="xs:long"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="findTerminByIdResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="return" type="tns:termin"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="termin">
+                <xs:sequence>
+                    <xs:element name="cena" type="xs:int"/>
+                    <xs:element minOccurs="0" name="id" type="xs:long"/>
+                    <xs:element minOccurs="0" name="mesec" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="findAllServices">
+                <xs:sequence/>
+            </xs:complexType>
+            <xs:complexType name="findAllServicesResponse">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:dodatnaUsluga"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="findAllCategories">
+                <xs:sequence/>
+            </xs:complexType>
+            <xs:complexType name="findAllCategoriesResponse">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:kategorija"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="findSlikaById">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="arg0" type="xs:long"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="findSlikaByIdResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="return" type="tns:smestajSlika"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="findKomentarById">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="arg0" type="xs:long"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="findKomentarByIdResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="return" type="tns:komentar"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="findTipById">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="arg0" type="xs:long"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="findTipByIdResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="return" type="tns:tipSmestaja"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="findAllAccomodations">
+                <xs:sequence/>
+            </xs:complexType>
+            <xs:complexType name="findAllAccomodationsResponse">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:smestaj"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="save">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="arg0" type="tns:smestaj"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="saveResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="return" type="tns:smestaj"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="findDodatnaUslugaById">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="arg0" type="xs:long"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="findDodatnaUslugaByIdResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="return" type="tns:dodatnaUsluga"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="saveTermin">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="arg0" type="tns:termin"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="saveTerminResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="return" type="tns:termin"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="findKategorijaById">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="arg0" type="xs:long"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="findKategorijaByIdResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="return" type="tns:kategorija"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="findAllTypes">
+                <xs:sequence/>
+            </xs:complexType>
+            <xs:complexType name="findAllTypesResponse">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:tipSmestaja"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="getSmestajeAgenta">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="arg0" type="xs:long"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="getSmestajeAgentaResponse">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:smestaj"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:simpleType name="roleEnum">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="USER"/>
+                    <xs:enumeration value="AGENT"/>
+                    <xs:enumeration value="ADMIN"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="saveResponse">
+        <wsdl:part element="tns:saveResponse" name="parameters">
+    </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="saveSmestajSlika">
+        <wsdl:part element="tns:saveSmestajSlika" name="parameters">
+    </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="findSlikaByIdResponse">
+        <wsdl:part element="tns:findSlikaByIdResponse" name="parameters">
+    </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="findSmestajById">
+        <wsdl:part element="tns:findSmestajById" name="parameters">
+    </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="saveSmestajSlikaResponse">
+        <wsdl:part element="tns:saveSmestajSlikaResponse" name="parameters">
+    </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="findAllServices">
+        <wsdl:part element="tns:findAllServices" name="parameters">
+    </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="findTerminByIdResponse">
+        <wsdl:part element="tns:findTerminByIdResponse" name="parameters">
+    </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="saveTerminResponse">
+        <wsdl:part element="tns:saveTerminResponse" name="parameters">
+    </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="findKomentarById">
+        <wsdl:part element="tns:findKomentarById" name="parameters">
+    </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="findKomentarByIdResponse">
+        <wsdl:part element="tns:findKomentarByIdResponse" name="parameters">
+    </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="findTipByIdResponse">
+        <wsdl:part element="tns:findTipByIdResponse" name="parameters">
+    </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="findAllAccomodations">
+        <wsdl:part element="tns:findAllAccomodations" name="parameters">
+    </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="findDodatnaUslugaById">
+        <wsdl:part element="tns:findDodatnaUslugaById" name="parameters">
+    </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="findAllServicesResponse">
+        <wsdl:part element="tns:findAllServicesResponse" name="parameters">
+    </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="findKategorijaById">
+        <wsdl:part element="tns:findKategorijaById" name="parameters">
+    </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="findSmestajByIdResponse">
+        <wsdl:part element="tns:findSmestajByIdResponse" name="parameters">
+    </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="findAllTypes">
+        <wsdl:part element="tns:findAllTypes" name="parameters">
+    </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getSmestajeAgenta">
+        <wsdl:part element="tns:getSmestajeAgenta" name="parameters">
+    </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getSmestajeAgentaResponse">
+        <wsdl:part element="tns:getSmestajeAgentaResponse" name="parameters">
+    </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="findAllCategoriesResponse">
+        <wsdl:part element="tns:findAllCategoriesResponse" name="parameters">
+    </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="findTerminById">
+        <wsdl:part element="tns:findTerminById" name="parameters">
+    </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="findAllCategories">
+        <wsdl:part element="tns:findAllCategories" name="parameters">
+    </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="findDodatnaUslugaByIdResponse">
+        <wsdl:part element="tns:findDodatnaUslugaByIdResponse" name="parameters">
+    </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="findSlikaById">
+        <wsdl:part element="tns:findSlikaById" name="parameters">
+    </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="findAllTypesResponse">
+        <wsdl:part element="tns:findAllTypesResponse" name="parameters">
+    </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="findTipById">
+        <wsdl:part element="tns:findTipById" name="parameters">
+    </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="save">
+        <wsdl:part element="tns:save" name="parameters">
+    </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="saveTermin">
+        <wsdl:part element="tns:saveTermin" name="parameters">
+    </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="findKategorijaByIdResponse">
+        <wsdl:part element="tns:findKategorijaByIdResponse" name="parameters">
+    </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="findAllAccomodationsResponse">
+        <wsdl:part element="tns:findAllAccomodationsResponse" name="parameters">
+    </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="SmestajServiceSoap">
+        <wsdl:operation name="saveSmestajSlika">
+            <wsdl:input message="tns:saveSmestajSlika" name="saveSmestajSlika">
+    </wsdl:input>
+            <wsdl:output message="tns:saveSmestajSlikaResponse" name="saveSmestajSlikaResponse">
+    </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="findSmestajById">
+            <wsdl:input message="tns:findSmestajById" name="findSmestajById">
+    </wsdl:input>
+            <wsdl:output message="tns:findSmestajByIdResponse" name="findSmestajByIdResponse">
+    </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="findTerminById">
+            <wsdl:input message="tns:findTerminById" name="findTerminById">
+    </wsdl:input>
+            <wsdl:output message="tns:findTerminByIdResponse" name="findTerminByIdResponse">
+    </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="findAllServices">
+            <wsdl:input message="tns:findAllServices" name="findAllServices">
+    </wsdl:input>
+            <wsdl:output message="tns:findAllServicesResponse" name="findAllServicesResponse">
+    </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="findAllCategories">
+            <wsdl:input message="tns:findAllCategories" name="findAllCategories">
+    </wsdl:input>
+            <wsdl:output message="tns:findAllCategoriesResponse" name="findAllCategoriesResponse">
+    </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="findSlikaById">
+            <wsdl:input message="tns:findSlikaById" name="findSlikaById">
+    </wsdl:input>
+            <wsdl:output message="tns:findSlikaByIdResponse" name="findSlikaByIdResponse">
+    </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="findKomentarById">
+            <wsdl:input message="tns:findKomentarById" name="findKomentarById">
+    </wsdl:input>
+            <wsdl:output message="tns:findKomentarByIdResponse" name="findKomentarByIdResponse">
+    </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="findTipById">
+            <wsdl:input message="tns:findTipById" name="findTipById">
+    </wsdl:input>
+            <wsdl:output message="tns:findTipByIdResponse" name="findTipByIdResponse">
+    </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="findAllAccomodations">
+            <wsdl:input message="tns:findAllAccomodations" name="findAllAccomodations">
+    </wsdl:input>
+            <wsdl:output message="tns:findAllAccomodationsResponse" name="findAllAccomodationsResponse">
+    </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="save">
+            <wsdl:input message="tns:save" name="save">
+    </wsdl:input>
+            <wsdl:output message="tns:saveResponse" name="saveResponse">
+    </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="findDodatnaUslugaById">
+            <wsdl:input message="tns:findDodatnaUslugaById" name="findDodatnaUslugaById">
+    </wsdl:input>
+            <wsdl:output message="tns:findDodatnaUslugaByIdResponse" name="findDodatnaUslugaByIdResponse">
+    </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="saveTermin">
+            <wsdl:input message="tns:saveTermin" name="saveTermin">
+    </wsdl:input>
+            <wsdl:output message="tns:saveTerminResponse" name="saveTerminResponse">
+    </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="findKategorijaById">
+            <wsdl:input message="tns:findKategorijaById" name="findKategorijaById">
+    </wsdl:input>
+            <wsdl:output message="tns:findKategorijaByIdResponse" name="findKategorijaByIdResponse">
+    </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="findAllTypes">
+            <wsdl:input message="tns:findAllTypes" name="findAllTypes">
+    </wsdl:input>
+            <wsdl:output message="tns:findAllTypesResponse" name="findAllTypesResponse">
+    </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getSmestajeAgenta">
+            <wsdl:input message="tns:getSmestajeAgenta" name="getSmestajeAgenta">
+    </wsdl:input>
+            <wsdl:output message="tns:getSmestajeAgentaResponse" name="getSmestajeAgentaResponse">
+    </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="SmestajServiceSoapBinding" type="tns:SmestajServiceSoap">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="saveSmestajSlika">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="saveSmestajSlika">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="saveSmestajSlikaResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="findTerminById">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="findTerminById">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="findTerminByIdResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="findSmestajById">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="findSmestajById">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="findSmestajByIdResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="findAllServices">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="findAllServices">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="findAllServicesResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="findAllCategories">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="findAllCategories">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="findAllCategoriesResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="findSlikaById">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="findSlikaById">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="findSlikaByIdResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="findKomentarById">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="findKomentarById">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="findKomentarByIdResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="findTipById">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="findTipById">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="findTipByIdResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="findAllAccomodations">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="findAllAccomodations">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="findAllAccomodationsResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="save">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="save">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="saveResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="findDodatnaUslugaById">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="findDodatnaUslugaById">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="findDodatnaUslugaByIdResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="saveTermin">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="saveTermin">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="saveTerminResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="findKategorijaById">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="findKategorijaById">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="findKategorijaByIdResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="findAllTypes">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="findAllTypes">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="findAllTypesResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getSmestajeAgenta">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getSmestajeAgenta">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getSmestajeAgentaResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="SmestajService">
+        <wsdl:port binding="tns:SmestajServiceSoapBinding" name="SmestajServiceSoapImplPort">
+            <soap:address location="https://localhost:8443/Service/smestajServiceSoap"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
+

@@ -51,13 +51,13 @@ public class WsConfig {
         return endpoint;
     }
 	
-	@Bean(name = Bus.DEFAULT_BUS_ID)
+	/*@Bean(name = Bus.DEFAULT_BUS_ID)
 	public SpringBus springBus() {
 		SpringBus springBus = new SpringBus();
 		//springBus.getInInterceptors().add(getWSS4JInInterceptor());
-		springBus.getOutInterceptors().add(getWSS4JOutInterceptor());
+		//springBus.getOutInterceptors().add(getWSS4JOutInterceptor());
 		return springBus;
-	}
+	}*/
 	
 	private WSS4JInInterceptor getWSS4JInInterceptor() {
 		Map<String, Object> inProps = new HashMap<String, Object>();

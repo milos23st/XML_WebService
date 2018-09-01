@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 import javax.transaction.Transactional;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 import org.hibernate.annotations.Fetch;
@@ -43,6 +45,7 @@ public class User {
     private List<Poruka> poruke;
     */
     private boolean aktivan;
+    
   
     @ManyToOne(optional = false,fetch = FetchType.EAGER)
 	private Role role;
@@ -61,7 +64,6 @@ public class User {
         this.poruke = user.getPoruke();*/
         this.aktivan = user.isAktivan();
     }
-    
 	public Long getId() {
 		return id;
 	}

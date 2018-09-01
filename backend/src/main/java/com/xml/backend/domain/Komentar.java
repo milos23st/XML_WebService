@@ -4,12 +4,15 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 
 import com.xml.user.User;
 
 
 
 @Entity
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Komentar {
 	@Id
 	private String id;

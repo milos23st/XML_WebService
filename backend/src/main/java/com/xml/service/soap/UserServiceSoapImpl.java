@@ -1,7 +1,9 @@
 package com.xml.service.soap;
 
+import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.transaction.Transactional;
+import javax.xml.ws.ResponseWrapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,12 +17,12 @@ import com.xml.user.User;
 public class UserServiceSoapImpl implements UserServiceSoap {
 
 	@Autowired
-	UserService userService;
+	UserRepository userRepository;
 
 	@Override
+	@Transactional
 	public User findOne(Long id) {
-		User user = userService.findOne(id);
-		return user;
+		return userRepository.findById(id).get();
 	}
 	
 	
