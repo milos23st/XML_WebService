@@ -20,7 +20,9 @@ import agentapp.domain.KategorijaSoap;
 import agentapp.domain.KomentarSoap;
 import agentapp.domain.NaseljenoMestoSoap;
 import agentapp.domain.RezervacijaSoap;
+import agentapp.domain.SmestajSlikaSoap;
 import agentapp.domain.SmestajSoap;
+import agentapp.domain.TerminSoap;
 import agentapp.domain.TipSmestajaSoap;
 import agentapp.domain.ZauzetostSoap;
 import agentapp.dto.SmestajDto;
@@ -35,6 +37,8 @@ import agentapp.repository.TerminSoapRepository;
 import agentapp.repository.TipSmestajaSoapRepository;
 import agentapp.repository.ZauzetostSoapRepository;
 import https.bezbednost.SmestajServiceSoap;
+import https.bezbednost.SmestajSlika;
+import https.bezbednost.Termin;
 import https.bezbednost.TipSmestaja;
 import https.bezbednost.UserServiceSoap;
 import https.bezbednost.Zauzetost;
@@ -95,19 +99,35 @@ public class SoapSmestajService {
 		smestaj.setAddress(s.getAddress());
 		smestaj.setKapacitet(s.getKapacitet());
 		smestaj.setKategorija(smestajServiceSoap.findKategorijaById(s.getKategorija()));
-		System.out.println(smestaj.getKategorija().getName()+"*************");
 		smestaj.setNaseljenomesto(smestajServiceSoap.findNaseljenoMestoById(s.getNaseljenomesto()));
 		smestaj.setOpis(s.getOpis());
 		smestaj.setTipSmestaja(smestajServiceSoap.findTipById(s.getTipSmestaja()));
 		smestaj.setAgent(userServiceSoap.findOne(agentId));
-		System.out.println(smestaj.getAgent().isAktivan()+"*************");
 		for(Long dodatna: s.getDodatneUsluge()) {
 			smestaj.getDodatneUsluge().add(smestajServiceSoap.findDodatnaUslugaById(dodatna));
+		}
+		SmestajSoap local = new SmestajSoap();
+		for(String image: s.getImages()) {
+			SmestajSlikaSoap sss = new SmestajSlikaSoap();
+			sss.setUrl(image);
+			smestajSlikaSoapRepository.save(sss);
+			SmestajSlika ss = new SmestajSlika();
+			ss.setUrl(image);
+			smestaj.getImages().add(ss);
+			local.getImages().add(sss);
+		}
+		for(TerminSoap termin: s.getTermsSoap()) { 
+			terminSoapRepository.save(termin);
+			Termin t = new Termin();
+			t.setPrice(termin.getCena());
+			t.setMesec(termin.getMesec());
+			smestaj.getTerms().add(t);
+			local.getTermini().add(termin);
+			
 		}
 		
 		smestajServiceSoap.save(smestaj);
 		
-		SmestajSoap local = new SmestajSoap();
 		local.setAddress(s.getAddress());
 		local.setAgent(agentId);
 		local.setKapacitet(s.getKapacitet());
@@ -232,6 +252,7 @@ public class SoapSmestajService {
 		
 		
 	}
+	
 	
 	
 }

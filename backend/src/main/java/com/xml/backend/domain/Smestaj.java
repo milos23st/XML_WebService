@@ -61,8 +61,23 @@ public class Smestaj {
     @Fetch(value = FetchMode.SUBSELECT)
     private List<Ocena> rating = new ArrayList<Ocena>();
     
+    @OneToMany(fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
+    private List<Termin> terms = new ArrayList<Termin>();
     
 	
+	public NaseljenoMesto getNaseljenomesto() {
+		return naseljenomesto;
+	}
+	public void setNaseljenomesto(NaseljenoMesto naseljenomesto) {
+		this.naseljenomesto = naseljenomesto;
+	}
+	public List<Termin> getTermini() {
+		return terms;
+	}
+	public void setTermini(List<Termin> terms) {
+		this.terms = terms;
+	}
 	public TipSmestaja getTipSmestaja() {
 		return tipSmestaja;
 	}

@@ -89,6 +89,12 @@ public class SmestajServiceSoapImpl implements SmestajServiceSoap{
 	@Override
 	public Smestaj save(Smestaj acc) {
 		User u = userRepository.getOne(acc.getAgent().getId());
+		for(SmestajSlika s: acc.getImages()) {
+		smestajSlikaRepository.save(s);
+		}
+		for(Termin t: acc.getTermini()) {
+			terminRepository.save(t);
+		}
 		acc.setAgent(u);
 		return smestajRepository.save(acc);
 	}

@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence&gt;
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/&gt;
  *         &lt;element name="mesec" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/&gt;
- *         &lt;element name="cena" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
+ *         &lt;element name="price" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -31,13 +31,13 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "termin", propOrder = {
     "id",
     "mesec",
-    "cena"
+    "price"
 })
 public class Termin {
 
     protected Long id;
     protected Integer mesec;
-    protected int cena;
+    protected int price;
 
     /**
      * Gets the value of the id property.
@@ -88,19 +88,19 @@ public class Termin {
     }
 
     /**
-     * Gets the value of the cena property.
+     * Gets the value of the price property.
      * 
      */
-    public int getCena() {
-        return cena;
+    public int getPrice() {
+        return price;
     }
 
     /**
-     * Sets the value of the cena property.
+     * Sets the value of the price property.
      * 
      */
-    public void setCena(int value) {
-        this.cena = value;
+    public void setPrice(int value) {
+        this.price = value;
     }
 
 }

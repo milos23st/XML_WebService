@@ -17,8 +17,10 @@ import agentapp.domain.KomentarSoap;
 import agentapp.domain.NaseljenoMestoSoap;
 import agentapp.domain.OcenaSoap;
 import agentapp.domain.SmestajSlikaSoap;
+import agentapp.domain.TerminSoap;
 import agentapp.domain.TipSmestajaSoap;
 import agentapp.domain.ZauzetostSoap;
+
 
 public class SmestajDto {
 	
@@ -34,6 +36,7 @@ public class SmestajDto {
     private Long tipSmestaja;
 	private Set<String> images = new HashSet<String>();
     private Set<Long> dodatneUsluge  = new HashSet<Long>();
+    private List<TerminSoap> termsSoap;
 	public SmestajDto(Long id, String name, Integer kapacitet, Long naseljenomesto, String opis, String address,
 			Long agent, Long kategorija, Long tipSmestaja, Set<String> images, Set<Long> dodatneUsluge) {
 		super();
@@ -52,6 +55,13 @@ public class SmestajDto {
 	public SmestajDto() {}
 	public Long getId() {
 		return id;
+	}
+	
+	public List<TerminSoap> getTermsSoap() {
+		return termsSoap;
+	}
+	public void setTermsSoap(List<TerminSoap> termsSoap) {
+		this.termsSoap = termsSoap;
 	}
 	public void setId(Long id) {
 		this.id = id;

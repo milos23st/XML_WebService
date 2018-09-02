@@ -33,6 +33,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="images" type="{https://bezbednost/}smestajSlika" maxOccurs="unbounded" minOccurs="0"/&gt;
  *         &lt;element name="dodatneUsluge" type="{https://bezbednost/}dodatnaUsluga" maxOccurs="unbounded" minOccurs="0"/&gt;
  *         &lt;element name="rating" type="{https://bezbednost/}ocena" maxOccurs="unbounded" minOccurs="0"/&gt;
+ *         &lt;element name="terms" type="{https://bezbednost/}termin" maxOccurs="unbounded" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -56,7 +57,8 @@ import javax.xml.bind.annotation.XmlType;
     "tipSmestaja",
     "images",
     "dodatneUsluge",
-    "rating"
+    "rating",
+    "terms"
 })
 public class Smestaj {
 
@@ -79,6 +81,8 @@ public class Smestaj {
     protected List<DodatnaUsluga> dodatneUsluge;
     @XmlElement(nillable = true)
     protected List<Ocena> rating;
+    @XmlElement(nillable = true)
+    protected List<Termin> terms;
 
     /**
      * Gets the value of the id property.
@@ -439,6 +443,35 @@ public class Smestaj {
             rating = new ArrayList<Ocena>();
         }
         return this.rating;
+    }
+
+    /**
+     * Gets the value of the terms property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the terms property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getTerms().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Termin }
+     * 
+     * 
+     */
+    public List<Termin> getTerms() {
+        if (terms == null) {
+            terms = new ArrayList<Termin>();
+        }
+        return this.terms;
     }
 
 }

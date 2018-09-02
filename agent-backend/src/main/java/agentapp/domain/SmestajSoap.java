@@ -49,8 +49,23 @@ public class SmestajSoap {
     private Set<DodatnaUslugaSoap> dodatneUsluge  = new HashSet<DodatnaUslugaSoap>();
     @ManyToMany
     private List<OcenaSoap> rating = new ArrayList<OcenaSoap>();
+    @OneToMany
+	private List<TerminSoap> termini = new ArrayList<TerminSoap>();
+    
     
 	
+	public NaseljenoMestoSoap getNaseljenomesto() {
+		return naseljenomesto;
+	}
+	public void setNaseljenomesto(NaseljenoMestoSoap naseljenomesto) {
+		this.naseljenomesto = naseljenomesto;
+	}
+	public List<TerminSoap> getTermini() {
+		return termini;
+	}
+	public void setTermini(List<TerminSoap> termini) {
+		this.termini = termini;
+	}
 	public TipSmestajaSoap getTipSmestaja() {
 		return tipSmestaja;
 	}

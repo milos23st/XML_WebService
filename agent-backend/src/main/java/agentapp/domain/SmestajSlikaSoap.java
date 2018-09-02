@@ -20,6 +20,8 @@ public class SmestajSlikaSoap {
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	private SmestajSoap smestaj;
+	
+	public SmestajSlikaSoap(){}
 
 	public Long getId() {
 		return id;
