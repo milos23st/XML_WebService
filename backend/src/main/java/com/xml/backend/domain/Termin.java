@@ -12,7 +12,7 @@ public class Termin {
 	@GeneratedValue
 	private Long id;
 	private Integer mesec;
-	private int cena;
+	private int price;
 	 
 	public Long getId() {
 		return id;
@@ -26,12 +26,13 @@ public class Termin {
 	public void setMesec(Integer mesec) {
 		this.mesec = mesec;
 	}
-	public int getCena() {
-		return cena;
+	public int getPrice() {
+		return price;
 	}
-	public void setCena(int cena) {
-		this.cena = cena;
+	public void setPrice(int price) {
+		this.price = price;
 	}
+	
 	 
 	 
 }

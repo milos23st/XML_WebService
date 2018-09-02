@@ -68,19 +68,19 @@ public class SmestajController {
             value = "/smestaj/search",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-	public ResponseEntity<List<Smestaj>> simpleSearch(@RequestParam(value = "datumDo", required = false) String datumDo1,@RequestParam(value = "datumOd", required = false) String datumOd1,@RequestParam(value = "mesto", required = false) String mesto, @RequestParam(value = "brOsoba", required = false) Integer brOsoba, @RequestParam(value = "dodatna", required = false) String[] dodatna,
+	public ResponseEntity<List<Smestaj>> simpleSearch(@RequestParam(value = "dateE", required = false) String dateE1,@RequestParam(value = "dateS", required = false) String dateS1,@RequestParam(value = "mesto", required = false) String mesto, @RequestParam(value = "brOsoba", required = false) Integer brOsoba, @RequestParam(value = "dodatna", required = false) String[] dodatna,
             @RequestParam(value = "tip", required = false) String[] tip, @RequestParam(value = "kategorija", required = false) String[] kategorija) {
 			List<Smestaj> ukloniti = new ArrayList<Smestaj>();
 			String naziv = mesto;
 			System.out.println(naziv);
 			Integer kapacitet = brOsoba;
 			DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-			Date datumOd = null;
-			Date datumDo = null;
+			Date dateS = null;
+			Date dateE = null;
 			try {
-			datumOd = format.parse(datumOd1);
-			System.out.println(datumOd);
-			datumDo = format.parse(datumDo1);
+			dateS = format.parse(dateS1);
+			System.out.println(dateS);
+			dateE = format.parse(dateE1);
 			} catch (ParseException e) {
 			e.printStackTrace();
 			}
@@ -96,7 +96,7 @@ public class SmestajController {
 			if(s.getKapacitet() == kapacitet) {
 			boolean preklapanje = false;
 			for(Zauzetost z : s.getZauzeto()) {
-			if(z.getPocetak().before(datumDo) && z.getKraj().after(datumOd)) {
+			if(z.getPocetak().before(dateE) && z.getKraj().after(dateS)) {
 			preklapanje = true;
 			}
 			}

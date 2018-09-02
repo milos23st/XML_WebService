@@ -1,6 +1,6 @@
 export class Term {
   constructor(
-      public month: string,
+      public mesec: string,
       public price: number,
       public id?: string
     ) { }

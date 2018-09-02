@@ -4,6 +4,7 @@ import { AccommodationType } from './../models/accommodationType';
 import { AccommodationCategory } from './../models/accommodationCategory';
 import { PopulatedPlace } from './../models/populatedPlace';
 import { Comment } from './../models/comment';
+import { User } from '../user/user';
 
 export class Accommodation {
     constructor(
@@ -12,6 +13,7 @@ export class Accommodation {
     public naseljenomesto: PopulatedPlace,
     public opis: string,
     public image: string,
+    public agent: User,
     public kategorija: AccommodationCategory,
     public accommodationType: AccommodationType,
     public terms: Array<Term>,

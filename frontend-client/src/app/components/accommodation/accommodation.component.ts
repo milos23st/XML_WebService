@@ -26,8 +26,8 @@ export class AccommodationComponent implements OnInit {
 
   dates = [];
   cena: number;
-  datumOd: Date;
-  datumDo: Date;
+  date1: Date;
+  date2: Date;
 
   submitted = false;
 
@@ -87,10 +87,10 @@ export class AccommodationComponent implements OnInit {
       }
     }
     this.dates = [];
-    this.dates.push(this.model.datumOd);
-    this.dates.push(this.model.datumDo);
-    localStorage.setItem('datumOd', this.dates[0]);
-    localStorage.setItem('datumOd', this.dates[1]);
+    this.dates.push(this.model.dateS);
+    this.dates.push(this.model.dateE);
+    localStorage.setItem('date1', this.dates[0]);
+    localStorage.setItem('date2', this.dates[1]);
     this.accommodationService
       .search(
         this.model,
@@ -106,12 +106,12 @@ export class AccommodationComponent implements OnInit {
           // tslint:disable-next-line:prefer-const
           let i: number;
           for (i = 0; i < this.accommodation.length; i++) {
-            this.datumOd = new Date(this.model.datumOd);
-            this.datumDo = new Date(this.model.datumDo);
+            this.date1 = new Date(this.model.dateS);
+            this.date2 = new Date(this.model.dateE);
             this.accommodation[i].price = 0;
-            while (this.datumOd <= this.datumDo) {
-              this.accommodation[i].price += this.accommodation[i].terms[this.datumOd.getMonth()].price;
-              this.datumOd = new Date(this.datumOd.getTime() + (60 * 60 * 24 * 1000));
+            while (this.date1 <= this.date2) {
+              this.accommodation[i].price += this.accommodation[i].terms[this.date1.getMonth()].price;
+              this.date1 = new Date(this.date1.getTime() + (60 * 60 * 24 * 1000));
            }
            localStorage.setItem(this.accommodation[i].id, this.accommodation[i].price.toString());
           }

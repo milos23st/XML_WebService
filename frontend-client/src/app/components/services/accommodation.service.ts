@@ -68,7 +68,7 @@ export class AccommodationService {
       }
     }
     return this.http.get<Accommodation[]>(this.url_smestaj + '/search?mesto=' + model.mesto + '&brOsoba=' + model.peopleM +
-    '&datumOd=' + model.dateS + '&datumDo=' + model.dateE + this.url_check_dod + this.url_check_tip + this.url_check_kat);
+    '&dateS=' + model.dateS + '&dateE=' + model.dateE + this.url_check_dod + this.url_check_tip + this.url_check_kat);
   }
 
   getDodatne(): Observable<AdditionalService[]> {

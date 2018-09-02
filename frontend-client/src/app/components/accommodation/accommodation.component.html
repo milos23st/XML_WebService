@@ -34,14 +34,14 @@
         
       <div class="form-group col-lg-5" [ngClass]="{ 'has-error': searchForm.submitted && !dateS.valid }">
         <label for="date1">Check in date: </label>
-        <input type="date" class="form-control" name="date1" id="date1" [(ngModel)]="model.dateS" #dateS="ngModel"  required>
+        <input type="date" class="form-control" name="dateS" id="dateSt" [(ngModel)]="model.dateS" #dateS="ngModel"  required>
         <div *ngIf="searchForm.submitted && !dateS.valid" class="alert alert-danger">Start date !!!</div>
 
       </div>
 
       <div class="form-group col-lg-5" [ngClass]="{ 'has-error': searchForm.submitted && !dateE.valid }">
         <label for="date2">Check out date: </label>
-        <input type="date" class="form-control" name="date2" id="date2" [(ngModel)]="model.dateE" #dateE="ngModel"  required="required">
+        <input type="date" class="form-control" name="date2" id="date2St" [(ngModel)]="model.dateE" #dateE="ngModel"  required="required">
         <div *ngIf="searchForm.submitted && !dateE.valid" class="alert alert-danger">End date !!!</div>
 
       </div>
@@ -122,6 +122,8 @@
           <h5> <p class="pLife">Category:</p> {{a.kategorija.name}}</h5>
           <h5> <p class="pLife">Capacity:</p> {{a.kapacitet}}</h5>
           <h5> <p class="pLife">Price:</p> {{a.price}}</h5>
+          <h5> <p class="pLife">Date from:</p> {{a.terms}}</h5>
+
           <h5> <p class="pLife">Reviews:</p></h5>
         </div>
       </a>

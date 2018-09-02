@@ -10,11 +10,11 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 })
 export class DetailsComponent implements OnInit {
 
-  accommodationId: string;
   accommodation: Accommodation;
-  datumOd: string;
-  datumDo: string;
-  naziv: string;
+  accommodationId: string;
+  date1: string;
+  date2: string;
+  ime: string;
   koment: string;
   komentar: Comment;
 
@@ -30,8 +30,8 @@ export class DetailsComponent implements OnInit {
       this.route.params.subscribe((params: Params) => {
         this.accommodationId = params['accommodationId'];
         this.getAccommodation(this.accommodationId);
-        this.datumOd = localStorage.getItem('datumOd');
-        this.datumDo = localStorage.getItem('datumDo');
+        this.date1 = localStorage.getItem('date1');
+        this.date2 = localStorage.getItem('date2');
       });
     }
   }

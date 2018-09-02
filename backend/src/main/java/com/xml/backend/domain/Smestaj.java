@@ -1,6 +1,7 @@
 package com.xml.backend.domain;
 
 import java.util.ArrayList;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -24,6 +25,8 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import com.xml.user.User;
+
+
 
 
 @Entity
@@ -57,6 +60,7 @@ public class Smestaj {
     @ManyToMany(fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)
     private List<Ocena> rating = new ArrayList<Ocena>();
+    
     
 	
 	public TipSmestaja getTipSmestaja() {
