@@ -26,3 +26,6 @@ insert into SMESTAJ_ZAUZETO values (2,2);
 insert into REZERVACIJA(id,cena,datum_dolaska,datum_odlaska,izvrsena,smestaj_id,user_id) values (1,3000,parsedatetime('2018-03-22','yyyy-MM-dd'),parsedatetime('2018-04-22','yyyy-MM-dd'),false,1,1);
 insert into TERMIN(id,mesec,price) values (1,'1','2000');
 insert into TERMIN(id,mesec,price) values (2,'2','3000');
+insert into SMESTAJ_TERMS(smestaj_id, terms_id) values (1,1);
+insert into SMESTAJ_TERMS(smestaj_id, terms_id) values (1,2);
+

@@ -1,7 +1,7 @@
 package com.xml.controller;
 
 import java.util.Collections;
-
+import java.util.List;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -38,16 +38,6 @@ import com.xml.user.JwtToken;
 import com.xml.user.Role;
 import com.xml.user.RoleEnum;
 import com.xml.user.User;
-
-
-
-
-
-
-
-
-
-
 
 @Controller
 @RequestMapping("/auth")
@@ -185,6 +175,67 @@ public class UserController {
         System.out.println(korisnik.getEmail());
         return new ResponseEntity<User>(korisnik, HttpStatus.OK);
 
+    }
+	@RequestMapping(
+            method = RequestMethod.GET,
+            value = "/korisnici-list",
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<List<User>> getAll() {
+
+        List<User> korisnik = userService.findAll();
+        return new ResponseEntity<List<User>>(korisnik, HttpStatus.OK);
+    }
+
+
+    @RequestMapping(
+            method = RequestMethod.GET,
+            value = "/korisnici-list/{id}",
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<User> getKorinsik(@PathVariable("id") String id) {
+
+        User korisnik = this.userService.findOne(Long.parseLong(id));
+        if (korisnik.getRole().getRole().equals(RoleEnum.USER)) {
+            return new ResponseEntity<User>(korisnik, HttpStatus.OK);
+        }else {
+            return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+
+
+    @RequestMapping(
+            method = RequestMethod.DELETE,
+            value = "/korisnici/{id}"
+    )
+    public ResponseEntity<User> deleteKorisnik(@PathVariable("id") String id){
+        this.userService.delete(Long.parseLong(id));
+        return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
+    }
+
+
+
+    @RequestMapping(
+            method = RequestMethod.PUT,
+            value = "/korisnici-list/{id}",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<User> actDeactKorisnik(@PathVariable("id") String id, @RequestBody User korisnik) throws Exception{
+    	User korisnici = this.userService.findOne(Long.parseLong(id));
+
+        if(korisnici == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+       User updateKorisnik = this.userService.activateDeactivate(korisnik);
+
+        if (updateKorisnik == null) {
+            return new ResponseEntity<User>(
+                    HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return new ResponseEntity<>(updateKorisnik, HttpStatus.OK);
     }
 	
 

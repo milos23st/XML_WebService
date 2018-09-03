@@ -110,8 +110,8 @@ export class AccommodationComponent implements OnInit {
             this.date1 = new Date(this.model.dateS);
             this.date2 = new Date(this.model.dateE);
             this.accommodation[i].price = 0;
-            while (this.date1 <= this.date2) {      
-              this.accommodation[i].price += this.accommodation[i].terms[this.date1.getMonth()].price;
+            while (this.date1 <= this.date2) {
+              this.accommodation[i].price += this.accommodation[i].terms[1].price;
               this.date1 = new Date(this.date1.getTime() + (60 * 60 * 24 * 1000));
            }
            localStorage.setItem(this.accommodation[i].id, this.accommodation[i].price.toString());

@@ -24,4 +24,15 @@ public class DodatnaUslugaServiceImpl implements DodatnaUslugaService {
 		return repository.getOne(id);
 	}
 
+	@Override
+	public DodatnaUsluga create(DodatnaUsluga ts) {
+		return repository.save(ts);
+	}
+
+	@Override
+	public void delete(Long id) {
+		repository.deleteById(id);
+		
+	}
+
 }

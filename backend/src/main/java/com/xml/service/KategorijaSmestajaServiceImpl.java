@@ -26,4 +26,15 @@ public class KategorijaSmestajaServiceImpl implements KategorijaSmestajaService 
 		return repository.getOne(id);
 	}
 
+	@Override
+	public Kategorija create(Kategorija ts) {
+		return repository.save(ts);
+	}
+
+	@Override
+	public void delete(Long id) {
+		repository.deleteById(id);
+		
+	}
+
 }

@@ -25,4 +25,15 @@ public class TipSmestajaServiceImpl implements TipSmestajaService {
 		return repository.getOne(id);
 	}
 
+	@Override
+	public TipSmestaja create(TipSmestaja ts) {
+		return repository.save(ts);
+	}
+
+	@Override
+	public void delete(Long id) {
+		repository.deleteById(id);
+		
+	}
+
 }

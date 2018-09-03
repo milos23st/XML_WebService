@@ -8,6 +8,7 @@ public interface TipSmestajaService {
 	
 	List<TipSmestaja> getAll();
 	TipSmestaja findOne(Long id);
-	
+	TipSmestaja create(TipSmestaja ts);
+	void delete(Long id);
 
 }
