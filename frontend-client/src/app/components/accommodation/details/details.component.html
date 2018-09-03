@@ -13,7 +13,7 @@
     <h4>Agent: {{accommodation?.agent?.ime}} {{accommodation?.agent?.prezime}}</h4>
          
      <h4>Dodatne usluge:</h4>
-    <div *ngFor="let d of accommodation?.additionalServices">
+    <div *ngFor="let d of accommodation?.dodatneUsluge">
       <h5>{{d.name}}</h5>
 
     </div>
@@ -22,8 +22,8 @@
     <h4>Odlazak: {{date2}}</h4>
 
     <h4>Komentari: </h4>
-    <div *ngFor="let k of accommodation?.comments">
-      <div *ngIf="k.odobren">
+    <div *ngFor="let k of accommodation?.komentari">
+      <div >
         <h4>{{k.ime}}</h4>
         <p>{{k.sadrzaj}}</p>
       </div>

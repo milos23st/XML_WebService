@@ -9,6 +9,7 @@ import { TokenStorage } from '../../login/token-storage';
 import * as jwt_decode from 'jwt-decode';
 import { UserService } from '../../user/user.service';
 import { CommentsService } from '../../services/comments.service';
+import { Comment } from '../../models/comment';
 
 @Component({
   selector: 'app-details',
@@ -64,6 +65,7 @@ export class DetailsComponent implements OnInit {
       data => {
         this.accommodation = data;
         this.accommodation.price = Number(localStorage.getItem(this.accommodationId));
+
       }
     );
   }
@@ -83,7 +85,7 @@ export class DetailsComponent implements OnInit {
     this.korisnikService.getKorisnik(jwt_decode(this.token.getToken())).subscribe(
       data => {
         this.ime = data.ime;
-        // this.komentar = new Comment(this.koment , false, this.ime);
+        this.komentar = new Comment(this.koment , false, this.ime);
         console.log(this.komentar);
         this.commentsService.addComment(this.komentar, this.accommodationId).subscribe();
       }

@@ -17,8 +17,8 @@ export class Accommodation {
     public kategorija: AccommodationCategory,
     public accommodationType: AccommodationType,
     public terms: Array<Term>,
-    public additionalServices: Array<AdditionalService>,
-    public comments: Array<Comment>,
+    public dodatneUsluge: Array<AdditionalService>,
+    public komentari: Array<Comment>,
     public price = 0,
     public id?: string,
 
