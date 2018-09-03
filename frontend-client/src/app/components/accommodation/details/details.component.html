@@ -20,9 +20,9 @@
     
     <h4>Dolazak: {{date1}}</h4>
     <h4>Odlazak: {{date2}}</h4>
-<!--
+
     <h4>Komentari: </h4>
-    <div *ngFor="let k of smestaj?.komentari">
+    <div *ngFor="let k of accommodation?.comments">
       <div *ngIf="k.odobren">
         <h4>{{k.ime}}</h4>
         <p>{{k.sadrzaj}}</p>
@@ -40,7 +40,7 @@
         </form>
       </div>
 
--->
+
 
       <div>
         <button (click)="reserve()" class="btn btn-success">Rezervisi</button>

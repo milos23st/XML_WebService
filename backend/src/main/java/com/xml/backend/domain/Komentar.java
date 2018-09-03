@@ -48,6 +48,15 @@ public class Komentar {
 	public void setOdobren(boolean odobren) {
 		this.odobren = odobren;
 	}
+	public Komentar(String id, String sadrzaj, boolean odobren) {
+		super();
+		this.id = id;
+		this.sadrzaj = sadrzaj;
+		this.odobren = odobren;
+	}
+	
+	
+	
     
     
 

@@ -19,7 +19,8 @@ export class ReservationService {
   constructor(private http: HttpClient) { }
 
   addReservation(rezervacija: Reservation, accommodationId: string, userId: string): Observable<Reservation> {
-    return this.http.post<Reservation>(this.url_reservation + '?smestaj=' + accommodationId + '&korisnik=' + userId , rezervacija, httpOptions);
+    return this.http.post<Reservation>(this.url_reservation + '?smestaj=' + accommodationId +
+     '&korisnik=' + userId , rezervacija, httpOptions);
   }
 
   deleteRezervacija(id: string): Observable<Reservation> {
