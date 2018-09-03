@@ -105,11 +105,12 @@ export class AccommodationComponent implements OnInit {
         } else {
           // tslint:disable-next-line:prefer-const
           let i: number;
+          // this.accommodation= [];
           for (i = 0; i < this.accommodation.length; i++) {
             this.date1 = new Date(this.model.dateS);
             this.date2 = new Date(this.model.dateE);
             this.accommodation[i].price = 0;
-            while (this.date1 <= this.date2) {
+            while (this.date1 <= this.date2) {      
               this.accommodation[i].price += this.accommodation[i].terms[this.date1.getMonth()].price;
               this.date1 = new Date(this.date1.getTime() + (60 * 60 * 24 * 1000));
            }

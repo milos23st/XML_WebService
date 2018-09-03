@@ -92,7 +92,7 @@ public class SmestajServiceSoapImpl implements SmestajServiceSoap{
 		for(SmestajSlika s: acc.getImages()) {
 		smestajSlikaRepository.save(s);
 		}
-		for(Termin t: acc.getTermini()) {
+		for(Termin t: acc.getTerms()) {
 			terminRepository.save(t);
 		}
 		acc.setAgent(u);

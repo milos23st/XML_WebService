@@ -13,6 +13,16 @@ public class Termin {
 	private Long id;
 	private Integer mesec;
 	private int price;
+	
+	
+	public Termin(){
+
+    }
+
+    public Termin( Integer mesec, int price) {
+        this.mesec = mesec;
+        this.price = price;
+    }
 	 
 	public Long getId() {
 		return id;

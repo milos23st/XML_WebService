@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Accommodation } from '../accommodation';
 import { AccommodationService } from '../../services/accommodation.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Reservation } from '../../models/reservation';
+import { ReservationService } from '../../services/reservation.service';
+import { User } from '../../user/user';
 
 @Component({
   selector: 'app-details',
@@ -17,11 +20,14 @@ export class DetailsComponent implements OnInit {
   ime: string;
   koment: string;
   komentar: Comment;
+  user: User;
+  reservation: Reservation;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private accommodationService: AccommodationService
+    private accommodationService: AccommodationService,
+    private reservationService: ReservationService
   ) { }
 
   ngOnInit() {
@@ -45,7 +51,13 @@ export class DetailsComponent implements OnInit {
     );
   }
 
-  reserve() {}
+  reserve() {
+
+    this.reservation = new Reservation(new Date(this.date1) , new Date(this.date2), this.accommodation.price);
+      this.reservationService.addReservation(this.reservation, this.accommodationId, this.user.id).subscribe();
+
+
+  }
 
 
 }

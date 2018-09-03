@@ -1,7 +1,7 @@
 INSERT INTO ROLE(id, role) VALUES(1, 'USER');
 INSERT INTO ROLE(id, role) VALUES(2, 'ADMIN');
 INSERT INTO ROLE(id, role) VALUES(3, 'AGENT');
-insert into USER(id, email, password,aktivan,role_id) values (1,'ja','$2a$10$dXJ3SW6G7P50lGmMkkmwe.20cQQubK3.HZWzG3YB1tlRy.fqvM/BG',true,1);
+insert into USER(id, email, ime, password, prezime, aktivan,role_id) values (1,'ja','Michael','$2a$10$dXJ3SW6G7P50lGmMkkmwe.20cQQubK3.HZWzG3YB1tlRy.fqvM/BG','Balack',true,1);
 insert into USER(id, email, password,aktivan,role_id) values (2,'ja1','$2a$10$dXJ3SW6G7P50lGmMkkmwe.20cQQubK3.HZWzG3YB1tlRy.fqvM/BG',true,2);
 insert into DODATNA_USLUGA(id , name) values (1, 'WiFi');
 insert into DODATNA_USLUGA(id , name) values (2, 'Tv');
@@ -23,4 +23,6 @@ insert into SMESTAJ_DODATNE_USLUGE values (2,3);
 insert into SMESTAJ_DODATNE_USLUGE values (2,4);
 insert into SMESTAJ_ZAUZETO values (1,1);
 insert into SMESTAJ_ZAUZETO values (2,2);
-insert into REZERVACIJA(id,cena,datum_dolaska,datum_odlaska,izvrsena,smestaj_id,user_id) values (1,3000,parsedatetime('2018-03-22','yyyy-MM-dd'),parsedatetime('2018-04-22','yyyy-MM-dd'),false,1,1)
+insert into REZERVACIJA(id,cena,datum_dolaska,datum_odlaska,izvrsena,smestaj_id,user_id) values (1,3000,parsedatetime('2018-03-22','yyyy-MM-dd'),parsedatetime('2018-04-22','yyyy-MM-dd'),false,1,1);
+insert into TERMIN(id,mesec,price) values (1,'1','2000');
+insert into TERMIN(id,mesec,price) values (2,'2','3000');

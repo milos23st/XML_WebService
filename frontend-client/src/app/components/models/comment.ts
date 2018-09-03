@@ -1,8 +1,8 @@
 export class Comment {
   constructor(
-    public text: string,
-    public approved: boolean,
-    public name: string,
+    public sadrzaj: string,
+    public odobren: boolean,
+    public naz: string,
     public id?: string
   ) {}
 }

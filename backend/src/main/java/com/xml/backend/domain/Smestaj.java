@@ -72,10 +72,10 @@ public class Smestaj {
 	public void setNaseljenomesto(NaseljenoMesto naseljenomesto) {
 		this.naseljenomesto = naseljenomesto;
 	}
-	public List<Termin> getTermini() {
+	public List<Termin> getTerms() {
 		return terms;
 	}
-	public void setTermini(List<Termin> terms) {
+	public void setTerms(List<Termin> terms) {
 		this.terms = terms;
 	}
 	public TipSmestaja getTipSmestaja() {
