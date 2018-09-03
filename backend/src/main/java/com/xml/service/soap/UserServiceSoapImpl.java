@@ -24,6 +24,11 @@ public class UserServiceSoapImpl implements UserServiceSoap {
 	public User findOne(Long id) {
 		return userRepository.findById(id).get();
 	}
+
+	@Override
+	public User verifyAgentLogin(String username) {
+		return userRepository.findByEmail(username);
+	}
 	
 	
 }

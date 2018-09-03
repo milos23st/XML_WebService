@@ -24,6 +24,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,6 +38,7 @@ import com.xml.user.JwtToken;
 import com.xml.user.Role;
 import com.xml.user.RoleEnum;
 import com.xml.user.User;
+
 
 
 
@@ -173,6 +175,17 @@ public class UserController {
         return matcher.find();
 		
 	}
+	@RequestMapping(
+            method = RequestMethod.GET,
+            value = "/user/{email}/",
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<User> getKorisnik(@PathVariable("email") String email) {
+        User korisnik = userService.findOne(Long.parseLong(email));
+        System.out.println(korisnik.getEmail());
+        return new ResponseEntity<User>(korisnik, HttpStatus.OK);
+
+    }
 	
 
 }

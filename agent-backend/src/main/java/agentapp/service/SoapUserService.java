@@ -24,5 +24,16 @@ public class SoapUserService {
 		return userServiceSoap.findOne(id);
 	
 	}
+	
+	public User verifyAgentLogin(String username) throws MalformedURLException {
+		
+		URL url = new URL("http://localhost:8081/Service/userServiceSoap?wsdl");
+		QName qname = new QName("https://bezbednost/", "UserService");
+		Service service = Service.create(url, qname);
+		UserServiceSoap userServiceSoap = service.getPort(UserServiceSoap.class);
+		
+
+		return userServiceSoap.verifyAgentLogin(username);
+	}
 
 }

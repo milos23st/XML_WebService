@@ -5,6 +5,9 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Reservation } from '../../models/reservation';
 import { ReservationService } from '../../services/reservation.service';
 import { User } from '../../user/user';
+import { TokenStorage } from '../../login/token-storage';
+import * as jwt_decode from 'jwt-decode';
+import { UserService } from '../../user/user.service';
 
 @Component({
   selector: 'app-details',
@@ -24,10 +27,12 @@ export class DetailsComponent implements OnInit {
   reservation: Reservation;
 
   constructor(
+    private token: TokenStorage,
     private route: ActivatedRoute,
     private router: Router,
     private accommodationService: AccommodationService,
-    private reservationService: ReservationService
+    private reservationService: ReservationService,
+    private korisnikService: UserService,
   ) { }
 
   ngOnInit() {
@@ -39,6 +44,13 @@ export class DetailsComponent implements OnInit {
         this.date1 = localStorage.getItem('date1');
         this.date2 = localStorage.getItem('date2');
       });
+    }
+    if (this.token.getToken() !== null) {
+      this.korisnikService.getKorisnik(jwt_decode(this.token.getToken())).subscribe(
+        data => {
+          this.user = data;
+        }
+      );
     }
   }
 
@@ -55,7 +67,7 @@ export class DetailsComponent implements OnInit {
 
     this.reservation = new Reservation(new Date(this.date1) , new Date(this.date2), this.accommodation.price);
       this.reservationService.addReservation(this.reservation, this.accommodationId, this.user.id).subscribe();
-
+      this.router.navigate(['accommodation']);
 
   }
 

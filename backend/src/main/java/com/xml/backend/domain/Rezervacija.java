@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -16,7 +17,7 @@ import com.xml.user.User;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Rezervacija {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
     private Date datumDolaska;
     private Date datumOdlaska;

@@ -6,10 +6,9 @@ import { AppComponent } from './app.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { AccommodationComponent } from './components/accommodation/accommodation.component';
 import { LoginComponent } from './components/login/login.component';
-
 import { AppRoutingModule } from './app-routing.module';
 import { RegistrationComponent } from './components/registration/registration.component';
-
+import { TokenStorage } from './components/login/token-storage';
 import { UserService } from './components/user/user.service';
 
 import { RouterModule } from '@angular/router/src/router_module';
@@ -34,6 +33,7 @@ import { DetailsComponent } from './components//accommodation/details/details.co
     HttpClientModule
   ],
   providers: [
+    TokenStorage,
     UserService
   ],
   bootstrap: [AppComponent]

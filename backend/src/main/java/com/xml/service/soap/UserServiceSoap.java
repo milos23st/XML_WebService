@@ -10,5 +10,6 @@ import com.xml.user.User;
 public interface UserServiceSoap {
 	
 	public User findOne(Long id);
+	public User verifyAgentLogin(String username);
 
 }
