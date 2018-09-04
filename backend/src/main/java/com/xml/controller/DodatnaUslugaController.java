@@ -22,7 +22,7 @@ public class DodatnaUslugaController {
     @Autowired
     private DodatnaUslugaService dodatnaUslugaService;
 
-    @RequestMapping(method = RequestMethod.GET, value ="/dodatneUsluge", produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.GET, value ="/dodatneusluge", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<DodatnaUsluga>> getAll() {
         List<DodatnaUsluga> usluge = dodatnaUslugaService.getAll();
         return new ResponseEntity<List<DodatnaUsluga>>(usluge, HttpStatus.OK);

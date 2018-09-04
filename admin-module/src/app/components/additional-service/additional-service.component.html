@@ -18,29 +18,37 @@
   <div class="col">
     <p class="sm">Use this form below to add new additional service</p>
 
-    <form>
-
+  <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+    <form #novaDodatnauslugaForm="ngForm" (ngSubmit)="novaDodatnauslugaSubmit(novaDodatnauslugaForm)">
       <div class="form-group">
-          <label for="city">Name: </label>
-          <input type="text" id="name" class="form-control" placeholder="Enter name..." name="name" required>
+        <label for="name">Additional service name :</label>
+        <input type="text" id="name" name="name" class="form-control" required ngModel #dodatnauslugaNaziv="ngModel">
       </div>
 
-      <div class="form-group">
-        <input type="submit" class="btn" value="Submit">
-      </div>
+      <button type="submit" class="btn btn-success" [disabled]="!novaDodatnauslugaForm.valid">Submit</button>
+</form>
+</div>
+</div>
 
-    </form>
-
-  </div>
 
   <div class="col">
         <p class="sm">Already created additional services</p>
 
-		<p class="life-container">
-      Venice, the capital of northern Italyâ€™s Veneto region, is built on more than 100 small islands in a lagoon in the Adriatic Sea. It has no roads, just canals â€“ including the Grand Canal thoroughfare â€“ lined with Renaissance and Gothic palaces. The central square, Piazza San Marco, contains St. Markâ€™s Basilica, which is tiled with Byzantine mosaics, and the Campanile bell tower offering views of the cityâ€™s red roofs.
+        
+		<a class="list-group-item clearfix life-container" *ngFor="let dodatneuslugeShow of dodatneUsluge">
+  <div class="pull-left">
+    <h2 class="list-group-item-heading" > Additional service name: {{dodatneuslugeShow.name}}</h2>
+
+    <span class="pull-right"> 
+      <button type="button" class="btn btn-secondary"  [routerLink]="['/additional/' + dodatneuslugeShow.id]">Edit</button>
+
       
-      
-		</p>
+      <button type="button" class="btn btn-danger" (click)="deleteDodatnausluga(dodatneuslugeShow)">Delete</button>
+        
+
+    </span>
+  </div>
+</a>
 		
 		
 	</div>

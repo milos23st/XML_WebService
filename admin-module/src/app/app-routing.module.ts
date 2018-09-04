@@ -7,11 +7,13 @@ import { TypeComponent } from './components/type/type.component';
 import { CommentsComponent } from './components/comments/comments.component';
 import { UserOperationsComponent } from './components/user-operations/user-operations.component';
 import { AddAgentComponent } from './components/add-agent/add-agent.component';
+import { DEditComponent } from './components/additional-service/d-edit/d-edit.component';
 
 
 const routes: Routes = [
   { path: 'category', component: CategoryComponent},
   { path: 'additional', component: AdditionalServiceComponent},
+  { path: 'additional/:dodatnauslugaId', component: DEditComponent},
   { path: 'type', component: TypeComponent},
   { path: 'login', component: LoginComponent},
   { path: 'comments', component: CommentsComponent},
